@@ -103,10 +103,11 @@ a{
 .topo{
     /* border: 1px solid red; */
     display: flex;
-    align-items: center;
+    /* align-items: center; */
     justify-content: space-between;
     padding: 50px;
 }
+
 
 .box{
     /* border: 1px solid red; */
@@ -120,10 +121,12 @@ a{
 
 .box:first-child{
     justify-content: start;
+    align-items: end;
 }
 
 .box:last-child{
     justify-content: end;
+    align-items: start;
 }
 
 .box>form{
