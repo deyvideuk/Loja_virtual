@@ -5,11 +5,14 @@
 /* Estilização de CSS geral */
 :root{
     --cor-amarelo: #FFE74C;
+    --cor-amarelo-50: #e2cd41;
     --cor-vermelho: #FF5964;
+    --cor-vermelho-50: #ca3640;
     --cor-branco: #FFFFFF;
     --cor-preto: #000000;
     --cor-verde: #6BF178;
     --cor-azul: #35A7FF;
+    --cor-bg: #F5F5F5;
 }
 
 *{
@@ -21,6 +24,10 @@
     font-weight: 500;
     font-style: normal;
     scroll-behavior: smooth;
+}
+
+body{
+    background-color: var(--cor-bg);
 }
 
 h1{
@@ -63,6 +70,8 @@ a{
     display: flex;
     flex-direction: column;
     width: 100%;
+    background-color: var(--cor-branco);
+    padding-bottom: 10px;
 }
 
 #news{
@@ -72,7 +81,23 @@ a{
     align-items: center;
     text-align: center;
     padding: 10px 0;
-    background-color: var(--cor-verde);
+    background-color: var(--cor-azul);
+    color: var(--cor-branco);
+}
+
+.btn-red{
+    display: flex;
+    text-align: center;
+    background-color: var(--cor-vermelho);
+    padding: 5px 30px;
+    color: var(--cor-branco);
+    text-decoration: none;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+.btn-red:hover{
+    background-color: var(--cor-vermelho-50);
 }
 
 .topo{
@@ -90,6 +115,7 @@ a{
     align-items: center;
     grid-area: 50px;
     width: 100%;
+    gap: 20px;
 }
 
 .box:first-child{
@@ -99,6 +125,68 @@ a{
 .box:last-child{
     justify-content: end;
 }
+
+.box>form{
+    position: relative;
+}
+
+.box>form>input[type="search"]{
+    display: flex;
+    text-align: center;
+    background-color: var(--cor-amarelo);
+    padding: 5px 30px;
+    color: var(--cor-branco);
+    text-decoration: none;
+    border-radius: 20px;
+    border: none;
+    position: relative;
+    border: none;
+    outline: none;
+}
+
+.box>form>input[type="search"]::placeholder{
+    color: var(--cor-branco);
+}
+
+.box>form>input[type="search"]:hover{
+    background-color: var(--cor-amarelo-50);
+}
+
+.box>form>input[type="search"]::after{
+    content: 'aassss';
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.box>form>label{
+    /* border: 1px solid red; */
+    position: absolute;
+    display: flex;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0;
+    z-index: 1;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    padding: 0 10px;
+    filter: invert();
+    height: 100%;
+    width: 45px;
+    justify-content: center;
+    align-items: center;
+}
+
+.box>form>label>img{
+    display: flex;
+    width: 100%;
+    object-fit: contain;
+}
+
+
 
 .logo{
     /* border: 1px solid red; */
@@ -118,6 +206,33 @@ a{
     object-fit: cover;
 }
 
+.box .item button{
+    /* border: 1px solid black; */
+    width: 100%;
+    max-width: 50px;
+    display: flex;
+    background-color: transparent;
+    position: relative;
+    border: none;
+    outline: none;
+}
+
+#valor-carrinho{
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.box .item img{
+    display: flex;
+    width: 100%;
+    object-fit: contain;
+    filter: invert(10%) sepia(90%) saturate(5741%) hue-rotate(356deg) brightness(101%) contrast(107%);
+}
+
+
+
 
 /* Estilização do menu navegacao */
 #menu{
@@ -130,16 +245,15 @@ a{
 
 #menu ul{
     /* border: 1px solid black; */
-    border-top: 1px solid var(--cor-preto);
-    border-bottom: 1px solid var(--cor-preto);
     display: flex;
     width: 100%;
-    max-width: 800px;
+    max-width: 1000px;
     margin: 0;
-    /* gap: 30px; */
+    gap: 30px;
     justify-content: center;
     align-items: center;
     padding: 10px 0;
+    background-color: var(--cor-verde);
 }
 
 #menu ul li{
@@ -150,7 +264,26 @@ a{
     /* border: 1px solid red; */
     text-decoration: none;
     font-weight: 400;
-    color: var(--cor-preto);
+    color: var(--cor-branco);
     padding: 5px 20px;
     position: relative;
+    font-weight: 600;
+    border-bottom: 0;
+    position: relative;
+}
+
+#menu ul li a::before{
+    content: '';
+    display: flex;
+    width: 0;
+    height: 2px;
+    background-color: white;
+    position: absolute;
+    bottom: 4px;
+    left: 0;
+    transition: 1s all;
+}
+#menu ul li a:hover::before{
+    width: 100%;
+    transition: 1s all;
 }
