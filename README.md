@@ -1,7 +1,7 @@
 🧾 Plano de Trabalho — ToyMania | Loja Virtual
 🎓 Disciplina: Desenvolvimento para Internet
 🏫 Instituição: Centro Universitário Maurício de Nassau
-👨‍🏫 Professor: [Nome do Professor]
+👨‍🏫 Professor: Tiago Emilio
 👥 Equipe:
 
 Deyvid André
