@@ -1,4 +1,4 @@
-🧾 Plano de Trabalho — Projeto de Desenvolvimento para Internet
+🧾 Plano de Trabalho — ToyMania | Loja Virtual
 🎓 Disciplina: Desenvolvimento para Internet
 🏫 Instituição: Centro Universitário Maurício de Nassau
 👨‍🏫 Professor: [Nome do Professor]
