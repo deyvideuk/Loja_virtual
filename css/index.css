@@ -290,3 +290,11 @@ a{
     width: 100%;
     transition: 1s all;
 }
+
+
+/* Estilização do banner */
+
+#Carousel{
+    /* border: 1px solid red; */
+    margin: 30px auto;
+}
