@@ -1,0 +1,38 @@
+
+body {
+    background: linear-gradient(to right, #FFFFFF, #35A7FF);
+    min-height: 100vh;
+}
+
+#container-cadastro .card{
+    border-radius: 24px; 
+    overflow: hidden; 
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#container-cadastro .container{
+    border-radius: 12px;
+}
+
+::placeholder{
+    color: #ddb6b6 !important;
+    opacity: 1 ;
+}
+
+#tem-conta  {
+    text-align: center;
+    margin-top: 16px;
+}
+
+#tem-conta a{
+    color: #35A7FF;
+    text-decoration: none;
+}
+
+#tem-conta:hover a {
+    color: #6BF178;
+    text-decoration: underline;
+}
+
+
+
