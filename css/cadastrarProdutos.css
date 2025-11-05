@@ -10,7 +10,7 @@ body {
 }
 
 body {
-    background-color: #35A7FF;
+    background-color: #F5F5F5;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
@@ -44,6 +44,10 @@ main {
     flex-direction: column;
     gap: 12px;
     width: 100%;
+}
+
+.entrada-campo {
+    resize: none;
 }
 
 .form-group {
