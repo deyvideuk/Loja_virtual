@@ -1,9 +1,7 @@
 const produtos = document.getElementById('teste');
 const widthBoxCard = document.querySelector('.box-card').clientWidth;
 const widthProduto = document.querySelector('.tela-produtos').clientWidth;
-// let widthBox = widthBoxCard;
 let clicks = 0;
-// let clicks = 0;
 let maxBoxItems = produtos.children.length;
 
 function next(){
@@ -110,3 +108,4 @@ function prev(){
         produtos.style.transform = `translateX(${maxBoxItems *  widthBoxCard}px))`;
     }
 }
+
