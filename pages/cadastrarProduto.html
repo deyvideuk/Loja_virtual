@@ -1,113 +1,114 @@
 <!DOCTYPE html>
-<html lang="pt_BR">
+<html lang="pt-BR">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../css/index.css">
-  <link rel="stylesheet" href="../css/cadastrarProdutos.css">
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Cadastro | ToyMania - Loja Virtual</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+	<link rel="stylesheet" href="../css/index.css" />
+	<link rel="stylesheet" href="../css/cadastrarProdutos.css">
 
-  <title>Cadastro de Produtos | ToyMania - Loja Virtual</title>
 </head>
 
 <body>
-  <header id="header">
-    <div id="news">
-      <p>🎉 Promoção Relâmpago na ToyMania! garante até 50% OFF 🧸</p>
-    </div>
-    <div class="topo">
-      <div class="box">
-        <form action="#">
-          <label for="pequisa">
-            <img src="../public/imgs/icons/lupa.png" alt="">
-          </label>
-          <input type="search" id="pequisa" class="shadow" placeholder="Buscar produtos">
-        </form>
-      </div>
-      <div class="box logo">
-        <img src="../public/imgs/logo/logotipo-toymania-semfundo.png" alt="logo">
-      </div>
-      <div class="box">
-        <div class="item">
-          <a href="../pages/login.html" class="btn-red shadow">Entrar</a>
-        </div>
-        <div class="item">
-          <button type="button">
-            <p id="valor-carrinho">0</p>
-            <img src="../public/imgs/icons/carrinho.png" alt="">
-          </button>
-        </div>
-      </div>
-    </div>
-    <nav id="menu">
-      <ul>
-        <li>
-          <a href="../index.html">Inicio</a>
 
-        </li>
-        <li>
-          <a href="#">Produtos</a>
-        </li>
-        <li>
-          <a href="#">Sobre</a>
-        </li>
-        <li>
-          <a href="#">Contato</a>
-        </li>
-      </ul>
-    </nav>
-  </header>
+	<header id="header">
+		<div id="news">
+			<p>🎉 Promoção Relâmpago na ToyMania! garante até 50% OFF 🧸</p>
+		</div>
+		<div class="topo">
+			<div class="box">
+				<form action="#">
+					<label for="pequisa">
+						<img src="../public/imgs/icons/lupa.png" alt="">
+					</label>
+					<input type="search" id="pequisa" class="shadow" placeholder="Buscar produtos">
+				</form>
+			</div>
+			<div class="box logo">
+				<img src="../public/imgs/logo/logotipo-toymania-semfundo.png" alt="logo">
+			</div>
+			<div class="box">
+				<div class="item">
+					<a href="../pages/login.html" class="btn-red shadow">Entrar</a>
+				</div>
+				<div class="item">
+					<button type="button">
+						<p id="valor-carrinho">0</p>
+						<img src="../public/imgs/icons/carrinho.png" alt="">
+					</button>
+				</div>
+			</div>
+		</div>
+		<nav id="menu">
+			<ul>
+				<li>
+					<a href="../index.html">Inicio</a>
+				</li>
+				<li>
+					<a href="../pages/cadastrarProduto.html">Produtos</a>
+				</li>
+				<li>
+					<a href="#">Sobre</a>
+				</li>
+				<li>
+					<a href="#">Contact</a>
+				</li>
+			</ul>
+		</nav>
+	</header>
+	<section id="container-cadastro">
+		<div class="container d-flex justify-content-center align-items-center">
+			<div class="card p-5 shadow" style="max-width: 800px; width: 100%">
+				<form id="form-cadastro" class="row g-2">
+					<h2 class="text-center mb-4">Cadastrar Produto</h2>
 
-  <main>
-    <section id="content">
-      <h1 id="titulo"> Cadastrar Produtos </h1>
+					<div class="col-md-4">
+						<label class="form-label">Nome Do Produto</label>
+						<input type="text" id="nomeProduto" class="form-control" placeholder="Ex: Carrinho" required>
+						<small class="error-message"></small>
+					</div>
+
+					<div class="col-md-4">
+						<label for="preco" class="form-label">Preço</label>
+						<input type="number" id="precoProduto" name="preco" class="form-control"
+							placeholder="Ex: R$ 25,00" required />
+						<small class="error-message"></small>
+					</div>
+
+					<div class="col-md-4">
+						<label for="quantidade" class="form-label">Quantidade Em Estoque</label>
+						<input type="number" id="quantidadeProduto" name="quantidade" class="form-control"
+							placeholder="Ex: 100" required />
+						<small class="error-message"></small>
+					</div>
+
+					<!-- Descrição ocupando toda a largura -->
+					<div class="col-12">
+						<label for="descricao" class="form-label" id="descricao-label">Descrição Do Produto</label>
+						<textarea type="text" id="descricaoProduto" class="form-control" name="descricao"
+							placeholder="Descrição do produto aqui..." required></textarea>
+						<small class="error-message"></small>
+					</div>
+
+					<button class="btn btn-primary w-100" id="btn-cadastrar" type="submit">Cadastrar Produto</button>
+					<button class="btn btn-secondary w-100" id="btn-cancelar" type="reset">Cancelar</button>
+
+				</form>
+			</div>
+		</div>
+	</section>
+
+	<footer class="footer">
+		<div class="footer-container">
+			<p>&copy; <span id="current-year"></span> ToyMania 🧸 | Todos os direitos reservados</p>
+			<p><a href="#">Política de Privacidade</a> · <a href="#">Contato</a></p>
+		</div>
+	</footer>
 
 
-      <form class="form-cadastro">
-
-        <div class="form-group">
-
-          <label class="texto-campo" for="nome">Nome do Produto:</label><br>
-          <input class="entrada-campo" type="text" id="nome" name="nome"> <br><br>
-        </div>
-
-        <div class="form-group">
-
-          <label class="texto-campo" for="descricao">Descrição:</label><br>
-          <textarea class="entrada-campo" id="descricao" name="descricao"></textarea><br><br>
-        </div>
-
-        <div class="form-group">
-
-          <label class="texto-campo" for="preco">Preço:</label><br>
-          <input class="entrada-campo" type="number" id="preco" name="preco" step="0.01"><br><br>
-        </div>
-
-        <div class="form-group">
-
-          <label class="texto-campo" for="quantidade">Quantidade em Estoque:</label><br>
-          <input class="entrada-campo" type="number" id="quantidade" name="quantidade"><br><br>
-        </div>
-
-        <div class="button-group">
-
-          <input class="button" id="ok-button" type="submit" value="Cadastrar Produto">
-          <input class="button" id="cancel-button" type="reset" value="Cancelar">
-        </div>
-      </form>
-    </section>
-
-  </main>
-
-
-  <footer class="footer mt-5">
-    <div class="footer-container">
-      <p>&copy; <span id="current-year"></span> ToyMania 🧸 | Todos os direitos reservados</p>
-      <p><a href="#">Política de Privacidade</a> · <a href="#">Contato</a></p>
-    </div>
-  </footer>
-
-  <script src="../js/cadastrarProduto.js"></script>
+	<script src="../js/cadastrarProduto.js"></script>
 
 </body>
 

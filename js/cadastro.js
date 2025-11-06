@@ -4,10 +4,10 @@ async function carregarEstados() {
     try {
         const resposta = await fetch(url);
         const dados = await resposta.json();
-        
+
         const selectEstado = document.getElementById("estado");
 
-        dados.sort((a,b) => a.nome.localeCompare(b.nome));
+        dados.sort((a, b) => a.nome.localeCompare(b.nome));
 
         dados.forEach(estado => {
             const option = document.createElement("option");
@@ -32,7 +32,7 @@ async function carregarCidades(uf) {
 
         selectCidade.innerHTML = '<option value="">Selecione a cidade</option>';
 
-        dados.sort((a,b) => a.nome.localeCompare(b.nome));
+        dados.sort((a, b) => a.nome.localeCompare(b.nome));
 
         dados.forEach(cidade => {
             const option = document.createElement("option");
@@ -46,7 +46,7 @@ async function carregarCidades(uf) {
     }
 }
 
-document.getElementById("estado").addEventListener("change", function() {
+document.getElementById("estado").addEventListener("change", function () {
     const uf = this.value;
 
     if (uf) {
@@ -84,7 +84,7 @@ async function buscarCEP() {
             // marca esse CEP como inválido para evitar alertas repetidos
             cepErroCache.add(cep);
             alert("CEP não encontrado");
-            return; 
+            return;
         }
 
         document.getElementById("endereco").value = dados.logradouro || "";
@@ -149,25 +149,25 @@ function limparErro(input) {
 form.addEventListener("input", function () {
     let valido = true;
 
-    if (nomeInput && (nomeInput.value.trim() === "" || nomeInput.value.length < 6 )){
+    if (nomeInput && (nomeInput.value.trim() === "" || nomeInput.value.length < 6)) {
         mostrarErro(nomeInput, "Por favor, insira seu nome completo.");
         valido = false;
     } else if (nomeInput) {
         limparErro(nomeInput);
     }
 
-    if (valido){
+    if (valido) {
         console.log("Formulário válido e pronto para envio!");
     }
 
-    if (emailInput.value.trim() === "" || !validarEmail(emailInput.value)){
+    if (emailInput.value.trim() === "" || !validarEmail(emailInput.value)) {
         mostrarErro(emailInput, "Por favor, insira um email válido.");
         valido = false;
     } else {
         limparErro(emailInput);
     }
 
-    if (telefoneInput.value.trim() === "" || !validarTelefone(telefoneInput.value)){
+    if (telefoneInput.value.trim() === "" || !validarTelefone(telefoneInput.value)) {
         mostrarErro(telefoneInput, "Por favor, insira um telefone válido.");
         valido = false;
     } else {
@@ -215,12 +215,12 @@ form.addEventListener("input", function () {
 
 });
 
-function validarEmail(email ) {
+function validarEmail(email) {
     const padraoEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return padraoEmail.test(email);
 }
 
-function validarTelefone(telefone ){
+function validarTelefone(telefone) {
     const padraoTelefone = /^\s*(\d{2}|\d{0})[-. ]?(\d{5}|\d{4})[-. ]?(\d{4})[-. ]?\s*$/;
     return padraoTelefone.test(telefone);
 }
@@ -248,78 +248,78 @@ function confirmarSenha(senha, confirmarSenha) {
  * @returns {boolean} - True se for válido, False se for inválido.
  */
 function validarCPF(cpf) {
-  
-  // 1. Limpa o CPF, deixando apenas os números
-  // (Equivalente ao seu 'numeros = [int(digito)...]' do Python)
-  const cpfLimpo = cpf.replace(/\D/g, '');
 
-  // 2. Verifica se o CPF tem 11 dígitos
-  if (cpfLimpo.length !== 11) {
-    console.error("CPF deve ter 11 dígitos.");
-    return false;
-  }
+    // 1. Limpa o CPF, deixando apenas os números
+    // (Equivalente ao seu 'numeros = [int(digito)...]' do Python)
+    const cpfLimpo = cpf.replace(/\D/g, '');
 
-  // 3. Verifica CPFs inválidos conhecidos (todos os dígitos iguais)
-  // O seu script Python não tinha isso, mas é uma melhoria simples e importante!
-  if (/^(\d)\1+$/.test(cpfLimpo)) {
-    console.error("CPF com todos os dígitos iguais é inválido.");
-    return false;
-  }
+    // 2. Verifica se o CPF tem 11 dígitos
+    if (cpfLimpo.length !== 11) {
+        console.error("CPF deve ter 11 dígitos.");
+        return false;
+    }
 
-  // --- 4. Cálculo do Primeiro Dígito Verificador (DV1) ---
-  
-  // O seu Python usou: sum(a*b for a, b in zip(numeros[0:9], range(10, 1, -1)))
-  // Em JS, um loop 'for' é o jeito mais simples de fazer isso:
-  
-  let soma = 0;
-  for (let i = 0; i < 9; i++) {
-    // Multiplica os 9 primeiros dígitos pela sequência (10, 9, 8, ..., 2)
-    soma += parseInt(cpfLimpo[i]) * (10 - i);
-  }
+    // 3. Verifica CPFs inválidos conhecidos (todos os dígitos iguais)
+    // O seu script Python não tinha isso, mas é uma melhoria simples e importante!
+    if (/^(\d)\1+$/.test(cpfLimpo)) {
+        console.error("CPF com todos os dígitos iguais é inválido.");
+        return false;
+    }
 
-  // O seu Python fez: (soma_produtos * 10 % 11) % 10
-  // Vamos fazer de um jeito um pouco mais "passo a passo" para entender:
-  let resto = (soma * 10) % 11;
-  
-  // Se o resto for 10 ou 11, ele vira 0
-  if (resto === 10 || resto === 11) {
-    resto = 0;
-  }
-  
-  const dv1 = resto;
+    // --- 4. Cálculo do Primeiro Dígito Verificador (DV1) ---
 
-  // 5. Verifica se o DV1 é válido
-  if (dv1 !== parseInt(cpfLimpo[9])) {
-    console.error("Primeiro dígito verificador está incorreto.");
-    return false;
-  }
+    // O seu Python usou: sum(a*b for a, b in zip(numeros[0:9], range(10, 1, -1)))
+    // Em JS, um loop 'for' é o jeito mais simples de fazer isso:
 
-  // --- 6. Cálculo do Segundo Dígito Verificador (DV2) ---
-  
-  // Reinicia a soma para calcular o segundo dígito
-  soma = 0;
-  for (let i = 0; i < 10; i++) {
-    // Agora multiplica os 10 primeiros dígitos (incluindo o DV1)
-    // pela sequência (11, 10, 9, ..., 2)
-    soma += parseInt(cpfLimpo[i]) * (11 - i);
-  }
+    let soma = 0;
+    for (let i = 0; i < 9; i++) {
+        // Multiplica os 9 primeiros dígitos pela sequência (10, 9, 8, ..., 2)
+        soma += parseInt(cpfLimpo[i]) * (10 - i);
+    }
 
-  resto = (soma * 10) % 11;
-  if (resto === 10 || resto === 11) {
-    resto = 0;
-  }
+    // O seu Python fez: (soma_produtos * 10 % 11) % 10
+    // Vamos fazer de um jeito um pouco mais "passo a passo" para entender:
+    let resto = (soma * 10) % 11;
 
-  const dv2 = resto;
+    // Se o resto for 10 ou 11, ele vira 0
+    if (resto === 10 || resto === 11) {
+        resto = 0;
+    }
 
-  // 7. Verifica se o DV2 é válido
-  if (dv2 !== parseInt(cpfLimpo[10])) {
-    console.error("Segundo dígito verificador está incorreto.");
-    return false;
-  }
+    const dv1 = resto;
 
-  // Se passou por todas as verificações, o CPF é válido!
-  console.log(`O CPF ${cpf} é VÁLIDO.`);
-  return true;
+    // 5. Verifica se o DV1 é válido
+    if (dv1 !== parseInt(cpfLimpo[9])) {
+        console.error("Primeiro dígito verificador está incorreto.");
+        return false;
+    }
+
+    // --- 6. Cálculo do Segundo Dígito Verificador (DV2) ---
+
+    // Reinicia a soma para calcular o segundo dígito
+    soma = 0;
+    for (let i = 0; i < 10; i++) {
+        // Agora multiplica os 10 primeiros dígitos (incluindo o DV1)
+        // pela sequência (11, 10, 9, ..., 2)
+        soma += parseInt(cpfLimpo[i]) * (11 - i);
+    }
+
+    resto = (soma * 10) % 11;
+    if (resto === 10 || resto === 11) {
+        resto = 0;
+    }
+
+    const dv2 = resto;
+
+    // 7. Verifica se o DV2 é válido
+    if (dv2 !== parseInt(cpfLimpo[10])) {
+        console.error("Segundo dígito verificador está incorreto.");
+        return false;
+    }
+
+    // Se passou por todas as verificações, o CPF é válido!
+    console.log(`O CPF ${cpf} é VÁLIDO.`);
+    return true;
 }
 
 
