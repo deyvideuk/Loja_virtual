@@ -3,7 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quicksand:wght@300..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
 /* Estilização de CSS geral */
-:root{
+:root {
     --cor-amarelo: #FFE74C;
     --cor-amarelo-50: #e2cd41;
     --cor-vermelho: #FF5964;
@@ -15,7 +15,7 @@
     --cor-bg: #F5F5F5;
 }
 
-*{
+* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -26,37 +26,37 @@
     scroll-behavior: smooth;
 }
 
-body{
+body {
     background-color: var(--cor-bg);
 }
 
-h1{
+h1 {
     font-family: "Quicksand", sans-serif !important;
     font-optical-sizing: auto;
     font-weight: 700;
     font-style: normal;
 }
 
-h2{
+h2 {
     font-family: "Poppins", sans-serif !important;
     font-weight: 400;
     font-style: normal;
 }
 
-h3{
+h3 {
     font-family: "Poppins", sans-serif !important;
     font-weight: 300;
     font-style: normal;
 }
 
-p{
+p {
     font-family: "Poppins", sans-serif !important;
     font-weight: 300;
     font-style: normal;
     margin: 0;
 }
 
-a{
+a {
     font-family: "Poppins", sans-serif !important;
     font-weight: 300;
     font-style: normal;
@@ -65,7 +65,7 @@ a{
 
 /* Estilização do header */
 
-#header{
+#header {
     /* border: 1px solid red; */
     display: flex;
     flex-direction: column;
@@ -75,7 +75,7 @@ a{
     margin-bottom: 1.5rem;
 }
 
-#news{
+#news {
     /* border: 1px solid red; */
     display: flex;
     justify-content: center;
@@ -86,7 +86,7 @@ a{
     color: var(--cor-branco);
 }
 
-.btn-red{
+.btn-red {
     display: flex;
     text-align: center;
     background-color: var(--cor-vermelho);
@@ -97,11 +97,11 @@ a{
     font-weight: 600;
 }
 
-.btn-red:hover{
+.btn-red:hover {
     background-color: var(--cor-vermelho-50);
 }
 
-.topo{
+.topo {
     /* border: 1px solid red; */
     width: 100%;
     display: flex;
@@ -112,7 +112,7 @@ a{
 }
 
 
-.box{
+.box {
     /* border: 1px solid red; */
     display: flex;
     justify-content: center;
@@ -122,21 +122,21 @@ a{
     gap: 20px;
 }
 
-.box:first-child{
+.box:first-child {
     justify-content: start;
     align-items: end;
 }
 
-.box:last-child{
+.box:last-child {
     justify-content: end;
     align-items: start;
 }
 
-.box>form{
+.box>form {
     position: relative;
 }
 
-.box>form>input[type="search"]{
+.box>form>input[type="search"] {
     display: flex;
     text-align: center;
     background-color: var(--cor-amarelo);
@@ -150,15 +150,15 @@ a{
     outline: none;
 }
 
-.box>form>input[type="search"]::placeholder{
+.box>form>input[type="search"]::placeholder {
     color: var(--cor-branco);
 }
 
-.box>form>input[type="search"]:hover{
+.box>form>input[type="search"]:hover {
     background-color: var(--cor-amarelo-50);
 }
 
-.box>form>input[type="search"]::after{
+.box>form>input[type="search"]::after {
     content: 'aassss';
     width: 100px;
     height: 100px;
@@ -168,7 +168,7 @@ a{
     left: 0;
 }
 
-.box>form>label{
+.box>form>label {
     /* border: 1px solid red; */
     position: absolute;
     display: flex;
@@ -186,7 +186,7 @@ a{
     align-items: center;
 }
 
-.box>form>label>img{
+.box>form>label>img {
     display: flex;
     width: 100%;
     object-fit: contain;
@@ -194,7 +194,7 @@ a{
 
 
 
-.logo{
+.logo {
     /* border: 1px solid red; */
     display: flex;
     width: auto;
@@ -206,13 +206,13 @@ a{
     overflow-y: hidden;
 }
 
-.logo img{
+.logo img {
     display: flex;
     width: 100%;
     object-fit: cover;
 }
 
-.box .item button{
+.box .item button {
     /* border: 1px solid black; */
     width: 100%;
     max-width: 50px;
@@ -223,14 +223,14 @@ a{
     outline: none;
 }
 
-#valor-carrinho{
+#valor-carrinho {
     position: absolute;
     top: -20px;
     left: 50%;
     transform: translateX(-50%);
 }
 
-.box .item img{
+.box .item img {
     display: flex;
     width: 100%;
     object-fit: contain;
@@ -241,7 +241,7 @@ a{
 
 
 /* Estilização do menu navegacao */
-#menu{
+#menu {
     /* border: 1px solid red; */
     display: flex;
     justify-content: center;
@@ -249,7 +249,7 @@ a{
     padding: 20px 10px;
 }
 
-#menu ul{
+#menu ul {
     /* border: 1px solid black; */
     display: flex;
     width: 100%;
@@ -263,11 +263,11 @@ a{
     margin: 0 30px;
 }
 
-#menu ul li{
+#menu ul li {
     list-style: none;
 }
 
-#menu ul li a{
+#menu ul li a {
     /* border: 1px solid red; */
     text-decoration: none;
     font-weight: 400;
@@ -279,7 +279,7 @@ a{
     position: relative;
 }
 
-#menu ul li a::before{
+#menu ul li a::before {
     content: '';
     display: flex;
     width: 0;
@@ -290,7 +290,8 @@ a{
     left: 0;
     transition: 1s all;
 }
-#menu ul li a:hover::before{
+
+#menu ul li a:hover::before {
     width: 100%;
     transition: 1s all;
 }
@@ -298,12 +299,12 @@ a{
 
 /* Estilização do banner */
 
-#Carousel{
+#Carousel {
     /* border: 1px solid red; */
-    margin: 50px auto 100px auto; 
+    margin: 50px auto 100px auto;
 }
 
-#banner{
+#banner {
     /* border: 1px solid red; */
     height: 430px;
     display: flex;
@@ -311,7 +312,7 @@ a{
 
 /* Estilização da area de produtos1 */
 
-#area-produtos{
+#area-produtos {
     /* border: 1px solid red; */
     display: flex;
     flex-direction: column;
@@ -332,7 +333,7 @@ a{
     overflow-x: hidden;
 }
 
-.produtos{
+.produtos {
     /* border: 1px solid green; */
     width: min-content;
     width: max-content;
@@ -340,10 +341,10 @@ a{
     flex-direction: row;
     gap: 50px;
     z-index: 1;
-    
+
 }
 
-.box-card{
+.box-card {
     /* border: 1px solid red; */
     display: flex;
     width: 100%;
@@ -351,7 +352,7 @@ a{
     min-width: 20rem;
 }
 
-.card-body a{
+.card-body a {
     margin: 0 auto !important;
 }
 
@@ -383,5 +384,5 @@ a{
 
 .footer a:hover {
     text-decoration: underline;
-    color: var(--cor-azul);
+    color: var(--cor-branco);
 }

@@ -1,19 +1,23 @@
+/* Reset Global */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* HTML & Body */
 html,
 body {
     height: 100%;
 }
 
 body {
-    background-color: #F5F5F5;
+    background: linear-gradient(to right, #FFFFFF, #35A7FF);
+    min-height: 100vh;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
+/* Main Container */
 main {
     min-height: 100%;
     display: flex;
@@ -26,7 +30,7 @@ main {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: rgb(255, 255, 255);
+    background-color: #fff;
     margin: 20px;
     padding: 20px;
     border-radius: 20px;
@@ -35,10 +39,58 @@ main {
     width: 100%;
 }
 
+/* Container Cadastro */
+#container-cadastro {
+    padding: 50px 0;
+}
+
+#container-cadastro .card {
+    border-radius: 24px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#container-cadastro .container {
+    border-radius: 12px;
+    display: flex;
+    width: 100%;
+}
+
+/* Form Elements */
+form h2 {
+    margin-bottom: 24px;
+    color: var(--cor-preto);
+    font-weight: 700;
+    font-size: 2rem;
+    text-align: center;
+}
+
+form input::placeholder,
+textarea::placeholder {
+    color: #ddb6b6 !important;
+    opacity: 1;
+}
+
+.form-control {
+    transition: all .2s ease-in-out;
+    border: 1px solid #ccc;
+}
+
+.form-control:hover {
+    border-color: #35A7FF;
+    box-shadow: 0 0 6px rgba(53, 167, 255, 0.4);
+}
+
+/* Campos Específicos */
+#descricao {
+    resize: none;
+    height: 200px;
+}
+
 #titulo {
     padding: 30px 0;
 }
 
+/* Form Cadastro Legacy (pode ser removido se não usar mais) */
 .form-cadastro {
     display: flex;
     flex-direction: column;
@@ -47,12 +99,30 @@ main {
 }
 
 .entrada-campo {
+    padding: 12px;
+    width: 100%;
     resize: none;
+    border: 2px solid gray;
+    border-radius: 12px;
 }
 
 .form-group {
     display: flex;
     flex-direction: column;
+}
+
+.texto-campo {
+    font-size: 25px;
+    margin-bottom: 8px;
+}
+
+/* Buttons */
+.button {
+    margin: 7px 0;
+    padding: 20px;
+    width: 50%;
+    border: 2px solid gray;
+    border-radius: 12px;
 }
 
 #ok-button {
@@ -63,35 +133,81 @@ main {
     background-color: #FF5964;
 }
 
-.texto-campo {
-    font-size: 25px;
-    margin-bottom: 8px;
-}
-
-.entrada-campo {
-    padding: 12px;
-    width: 100%;
-}
-
-.entrada-campo,
-.button {
-    border: 2px solid gray;
-    border-radius: 12px;
-}
-
-.button {
-    margin: 7px 0;
-    padding: 20px;
-    width: 50%;
-}
-
 .button-group {
     display: flex;
     justify-content: center;
-    gap: 10%
+    gap: 10%;
 }
 
+/* Input Wrap (Label Flutuante) */
+.input-wrap {
+    position: relative;
+    margin-bottom: 16px;
+}
 
+.input-wrap input {
+    padding: 12px 10px;
+    border-radius: 8px;
+}
+
+.input-wrap label {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #8b8b8b;
+    font-size: 0.95rem;
+    pointer-events: none;
+    transition: all .2s ease-in-out;
+    background: transparent;
+    padding: 0 6px;
+}
+
+/* Validação */
+.col-md-6 .error-message,
+.col-md-4 .error-message {
+    display: none;
+    color: #e74c3c;
+    font-size: 0.875em;
+    margin-top: 5px;
+}
+
+.col-md-6.error .form-control,
+.col-md-4.error .form-control {
+    border-color: #e74c3c;
+}
+
+.col-md-6.error .error-message,
+.col-md-4.error .error-message {
+    display: block;
+}
+
+.col-md-6.success .form-control,
+.col-md-4.success .form-control {
+    border-color: #2ecc71;
+}
+
+/* Link "Tem Conta" */
+#tem-conta {
+    text-align: center;
+    margin-top: 16px;
+}
+
+#tem-conta a {
+    color: #35A7FF;
+    text-decoration: none;
+}
+
+#tem-conta:hover a {
+    color: #6BF178;
+    text-decoration: underline;
+}
+
+#tem-conta a:active {
+    color: #FF5733;
+}
+
+/* Media Query */
 @media (min-width: 600px) {
     .form-cadastro {
         display: grid;
@@ -101,9 +217,6 @@ main {
 
     .button-group {
         grid-column: 1 / -1;
-        display: flex;
-        justify-content: center;
-
     }
 
     .button {
