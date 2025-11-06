@@ -312,7 +312,7 @@ a{
 /* Estilização da area de produtos1 */
 
 #area-produtos{
-    border: 1px solid red;
+    /* border: 1px solid red; */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -323,7 +323,8 @@ a{
 .tela-produtos{
     border: 1px solid blue;
     width: 100%;
-    max-width: 1100px;
+    max-width: 1452px;
+    /* max-width: min-content !important; */
     display: flex;
     flex-direction: row;
     /* padding: 10px 50px; */
@@ -333,6 +334,7 @@ a{
 
 .produtos{
     /* border: 1px solid green; */
+    width: min-content;
     width: max-content;
     display: flex;
     flex-direction: row;
@@ -342,11 +344,11 @@ a{
 }
 
 .box-card{
-    border: 1px solid red;
+    /* border: 1px solid red; */
     display: flex;
     width: 100%;
-    max-width: 15rem;
-    min-width: 15rem;
+    max-width: 20rem;
+    min-width: 20rem;
 }
 
 .card-body a{
