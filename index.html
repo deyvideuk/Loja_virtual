@@ -43,7 +43,7 @@
             </div>
             <div class="box">
                 <div class="item">
-                    <a href="pages/login.html" class="btn-red shadow">Entrar</a>
+                    <a href="pages/login.html#container-cadastro" class="btn-red shadow">Entrar</a>
                 </div>
                 <div class="item">
                     <button type="button">
@@ -54,22 +54,25 @@
             </div>
         </div>
         <nav id="menu">
-            <button id="btnMenu" class="btnClose" onclick="menu('open')"></button>
-            <ul>
-                <li>
-                    <a href="index.html">Inicio</a>
-                    
-                </li>
-                <li>
-                    <a href="/pages/cadastrarProduto.html">Produtos</a>
-                </li>
-                <li>
-                    <a href="#">Sobre</a>
-                </li>
-                <li>
-                    <a href="#">Contato</a>
-                </li>
-            </ul>
+            <button type="button" id="btnMenu" class="btnClose" onclick="menu()">
+                <img id="btnMenu" src="/public/imgs/icons/arrow-right.png" alt="">
+            </button>
+            <div class="areaLista">
+                <ul id="listaMenu">
+                    <li>
+                        <a onclick="menu()" href="index.html">Inicio</a>
+                    </li>
+                    <li>
+                        <a onclick="menu()" href="/pages/cadastrarProduto.html">Produtos</a>
+                    </li>
+                    <li>
+                        <a onclick="menu()" href="#">Sobre</a>
+                    </li>
+                    <li>
+                        <a onclick="menu()" href="#">Contato</a>
+                    </li>
+                </ul>
+            </div>
         </nav>
     </header>
     <!-- fim, area do header -->
@@ -87,7 +90,7 @@
             </div>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="public/imgs/banners/banner-principal.png" class="w-100" alt="">
+                    <img src="public/imgs/banners/banner1.png" class="w-100" alt="">
                 </div>
                 <div class="carousel-item">
                     <img src="public/imgs/banners/banner-diversao.png" class="w-100" alt="">
@@ -125,7 +128,7 @@
         <button type="button" class="btn btn-secondary" onclick="prev()">Prev</button>
         
         <div class="tela-produtos">
-            <div id="teste" class="produtos">
+            <div id="produtos" class="produtos">
                 <div class="box-card card d-flex justify-content-center">
                     <img src="/public/imgs/produtos/novos/uno.png" alt="" class="card-img-top">
                     <div class="card-body">

@@ -23,11 +23,16 @@
     font-optical-sizing: auto;
     font-weight: 500;
     font-style: normal;
-    scroll-behavior: smooth;
+    
+}
+
+html{
+    scroll-behavior: smooth !important;
 }
 
 body {
     background-color: var(--cor-bg);
+    overflow-y: auto !important;
 }
 
 h1 {
@@ -240,9 +245,14 @@ a {
 
 #menu .btnClose{
     display: none;
-    content: url('/public/imgs/icons/arrow-right.png');
     padding: 10px !important;
-    /* border-radius: 0px !important; */
+
+}
+
+#menu .areaLista{
+    display: flex;
+    width: 100%;
+    justify-content: center;
 }
 
 #menu ul {
@@ -413,19 +423,18 @@ a {
             flex-direction: column;
             position: fixed;
             top: 0;
-            left: -170px;
-            width: min-content;
+            width: 0;
+            max-width: min-content;
             height: 100%;
             justify-content: start;
             align-items: start;
-            padding: 50px 20px;
             z-index: 5;
             background-color: var(--cor-verde);
-            transition: 1s all;
         }
 
         #menu ul{
             flex-direction: column;
+            overflow-x: hidden;
         }
 
         #menu .btnClose{
@@ -438,7 +447,7 @@ a {
             border: none !important;
             border-top-right-radius: 100px;
             border-bottom-right-radius: 100px;
-            z-index: 1;
+            /* z-index: 1; */
         }
 
         /* .topo{
