@@ -7,16 +7,20 @@ if(produtos){
     var widthVitrine = document.querySelector('.tela-produtos').clientWidth;
     var clicks = 0;
     var vitrine;
+    var padding;
     var maxBoxItems = produtos.children.length;
     var startX = 0;
     var endX = 0;
 
     if(widthVitrine <= 450){
        vitrine = 1;
+       padding = 52;
     }else if(widthVitrine > 450 && widthVitrine <= 1150){
         vitrine = 2;
+        padding = 50;
     }else{
         vitrine = 3;
+        padding = 50;
     }
 
     produtos.addEventListener('touchstart', (e)=>{
@@ -40,23 +44,20 @@ if(produtos){
             }
         }
     }
-
 }
-
-
 
 function next(){
     console.log(clicks);
     if(clicks == 0){
         clicks++;
 
-        produtos.style.transform = `translateX(${-clicks * (widthBoxCard + 50)}px)`;
+        produtos.style.transform = `translateX(${-clicks * (widthBoxCard + padding)}px)`;
         produtos.style.transition = '1s all';
 
     }else if(clicks >= 1 && clicks < (maxBoxItems - vitrine)){
         clicks++;
 
-        produtos.style.transform = `translateX(${-clicks * (widthBoxCard + 50)}px)`;
+        produtos.style.transform = `translateX(${-clicks * (widthBoxCard + padding)}px)`;
         produtos.style.transition = '1s all';
 
     }else{
@@ -70,7 +71,7 @@ function prev(){
         clicks = (maxBoxItems - vitrine);
 
 
-        produtos.style.transform = `translateX(-${(clicks) * (widthBoxCard + 50)}px)`;
+        produtos.style.transform = `translateX(-${(clicks) * (widthBoxCard + padding)}px)`;
         produtos.style.transition = '1s all';
 
     }else if(clicks == maxBoxItems){
@@ -78,14 +79,14 @@ function prev(){
         
         clicks--;
 
-        produtos.style.transform = `translateX(-${clicks * (widthBoxCard + 50)}px)`;
+        produtos.style.transform = `translateX(-${clicks * (widthBoxCard + padding)}px)`;
         produtos.style.transition = '1s all';
 
     }else if(clicks > 0 && clicks <= (maxBoxItems)){
         
         clicks--;
 
-        produtos.style.transform = `translateX(-${clicks * (widthBoxCard + 50)}px)`;
+        produtos.style.transform = `translateX(-${clicks * (widthBoxCard + padding)}px)`;
         produtos.style.transition = '1s all';
     } else{
         clicks = 0;
@@ -93,7 +94,6 @@ function prev(){
         produtos.style.transform = `translateX(${maxBoxItems *  widthBoxCard}px))`;
     }
 }
-
 
 function menu(){
     if(widthTela <= 600){
