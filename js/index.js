@@ -3,11 +3,21 @@ var count = 0;
 
 if(produtos){
     var widthBoxCard = document.querySelector('.box-card').clientWidth;
-    var widthProduto = document.querySelector('.tela-produtos').clientWidth;
+    var widthVitrine = document.querySelector('.tela-produtos').clientWidth;
     var clicks = 0;
+    var vitrine;
     var maxBoxItems = produtos.children.length;
     var startX = 0;
     var endX = 0;
+
+    if(widthVitrine <= 450){
+       vitrine = 1;
+    }else if(widthVitrine > 450 && widthVitrine <= 1150){
+        vitrine = 2;
+    }else{
+        vitrine = 3;
+    }
+
 }
 
 produtos.addEventListener('touchstart', (e)=>{
@@ -37,10 +47,10 @@ function next(){
     if(clicks == 0){
         clicks++;
 
-        produtos.style.transform = `translateX(${-clicks * (widthBoxCard + 5)}px)`;
+        produtos.style.transform = `translateX(${-clicks * (widthBoxCard + 50)}px)`;
         produtos.style.transition = '1s all';
 
-    }else if(clicks >= 1 && clicks < (maxBoxItems - 3)){
+    }else if(clicks >= 1 && clicks < (maxBoxItems - vitrine)){
         clicks++;
 
         produtos.style.transform = `translateX(${-clicks * (widthBoxCard + 50)}px)`;
@@ -54,7 +64,7 @@ function next(){
 
 function prev(){
     if(clicks == 0){
-        clicks = (maxBoxItems - 3);
+        clicks = (maxBoxItems - vitrine);
 
 
         produtos.style.transform = `translateX(-${(clicks) * (widthBoxCard + 50)}px)`;
