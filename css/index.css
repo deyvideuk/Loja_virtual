@@ -24,10 +24,10 @@
     font-optical-sizing: auto;
     font-weight: 500;
     font-style: normal;
-    
+
 }
 
-html{
+html {
     scroll-behavior: smooth !important;
 }
 
@@ -69,7 +69,7 @@ a {
     margin: 0;
 }
 
-.borda{
+.borda {
     display: flex;
     height: 1px;
     width: 100%;
@@ -77,12 +77,12 @@ a {
     margin: 0 auto;
 }
 
-.verde{
+.verde {
     color: var(--cor-verde);
     background-color: var(--cor-verde);
 }
 
-.azul{
+.azul {
     color: var(--cor-azul);
     background-color: var(--cor-azul);
 }
@@ -226,6 +226,35 @@ a {
     object-fit: cover;
 }
 
+
+/*
+Tudo abaixo foi pesquisado, não tinha como eu saber.
+basicamente ele tira todos aqueles efeitos de link do a.
+*/
+
+#logo-header:link,
+#logo-header:visited,
+#logo-header:hover,
+#logo-header:active {
+    color: black;
+    /* Define a cor para todos os estados */
+    text-decoration: none;
+    /* Remove o sublinhado em todos os estados */
+}
+
+/* Opcional: Você pode querer um efeito visual quando o usuário interagir com o link */
+#logo-header:hover {
+    /* text-decoration: underline; */
+    /* Adiciona sublinhado apenas ao passar o mouse */
+    color: #555;
+    /* Muda ligeiramente a cor ao passar o mouse */
+}
+
+#logo-header:focus {
+    /* Garante acessibilidade, mantendo um contorno visual ao focar com o teclado */
+    outline: 1px solid #000;
+}
+
 .box .item button {
     /* border: 1px solid black; */
     width: 100%;
@@ -262,13 +291,13 @@ a {
     align-items: center;
 }
 
-#menu .btnClose{
+#menu .btnClose {
     display: none;
     padding: 10px !important;
 
 }
 
-#menu .areaLista{
+#menu .areaLista {
     display: flex;
     width: 100%;
     justify-content: center;
@@ -324,24 +353,24 @@ a {
 
 /* Estilização do banner */
 #Carousel {
-  margin: 30px auto;
-  padding: 0;
-  width: 100%;
-  max-width: 1500px;
-  overflow: hidden;
+    margin: 30px auto;
+    padding: 0;
+    width: 100%;
+    max-width: 1500px;
+    overflow: hidden;
 }
 
 #banner {
-  width: 100%;
+    width: 100%;
 }
 
 #banner img {
-  width: 100%;
-  height: 100%;
-  max-height: 500px;
-  object-fit: cover;
-  object-position: center;
-  border-radius: 10px;
+    width: 100%;
+    height: 100%;
+    max-height: 500px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 10px;
 }
 
 
@@ -360,7 +389,7 @@ a {
     margin: 0 auto; */
 }
 
-.tela-produtos{
+.tela-produtos {
     /* border: 1px solid blue; */
     position: relative;
     width: 100%;
@@ -372,9 +401,10 @@ a {
     scroll-behavior: smooth;
 }
 
-.btn-next, .btn-prev{
+.btn-next,
+.btn-prev {
     display: flex;
-    width: 40px ;
+    width: 40px;
     height: 40px;
     justify-content: center;
     align-items: center;
@@ -389,12 +419,13 @@ a {
     z-index: 2;
 }
 
-.btn-next:hover, .btn-prev:hover{
+.btn-next:hover,
+.btn-prev:hover {
     font-size: 60px;
     text-shadow: 2px 2px 2px black;
 }
 
-.btn-next{
+.btn-next {
     right: 0;
 }
 
@@ -455,89 +486,91 @@ a {
 
 /* ESTILIZAÇÃO PRA VERSÃO TABLET/MOBILE */
 
-    @media screen and (max-width: 1500px){
-        .tela-produtos{
-            max-width: 1063px;
-        }
+@media screen and (max-width: 1500px) {
+    .tela-produtos {
+        max-width: 1063px;
+    }
+}
+
+@media screen and (max-width: 1100px) {
+    .topo {
+        flex-direction: column;
+        flex-direction: column-reverse;
+        padding: 50px 20px;
+        align-items: center;
+        gap: 40px;
     }
 
-    @media screen and (max-width: 1100px){
-        .topo{
-            flex-direction: column;
-            flex-direction: column-reverse;
-            padding: 50px 20px;
-            align-items: center;
-            gap: 40px;
-        }
+    .tela-produtos {
+        max-width: 693px;
+    }
+}
 
-        .tela-produtos{
-            max-width: 693px;
-        }
+@media screen and (max-width: 720px) {
+    #banner img {
+        max-height: 280px;
+        border-radius: 0;
     }
 
-    @media screen and (max-width: 720px){
-        #banner img {
-            max-height: 280px;
-            border-radius: 0;
-        }
-        .carousel-indicators {
-            bottom: 10px;
-        }
-        .carousel-control-prev-icon,
-        .carousel-control-next-icon {
-            width: 25px;
-            height: 25px;
-        }
-
-        .tela-produtos{
-            max-width: 323px;
-        }
+    .carousel-indicators {
+        bottom: 10px;
     }
 
-    @media screen and (max-width: 600px) {
-        #menu{
-            /* border: 1px solid red; */
-            flex-direction: column;
-            position: fixed;
-            top: 0;
-            width: 0;
-            max-width: min-content;
-            height: 100%;
-            justify-content: start;
-            align-items: start;
-            z-index: 5;
-            background-color: var(--cor-verde);
-        }
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        width: 25px;
+        height: 25px;
+    }
 
-        #menu ul{
-            flex-direction: column;
-            overflow-x: hidden;
-        }
+    .tela-produtos {
+        max-width: 323px;
+    }
+}
 
-        #menu .btnClose{
-            display: flex;
-            position: absolute;
-            top: 50%;
-            right: -30px;
-            background-color: var(--cor-verde);
-            opacity: 1;
-            border: none !important;
-            border-top-right-radius: 100px;
-            border-bottom-right-radius: 100px;
-            /* z-index: 1; */
-        }
+@media screen and (max-width: 600px) {
+    #menu {
+        /* border: 1px solid red; */
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        width: 0;
+        max-width: min-content;
+        height: 100%;
+        justify-content: start;
+        align-items: start;
+        z-index: 5;
+        background-color: var(--cor-verde);
+    }
 
-        .produtos{
-            /* gap: 5; */
-        }
+    #menu ul {
+        flex-direction: column;
+        overflow-x: hidden;
+    }
 
-        /* .topo{
+    #menu .btnClose {
+        display: flex;
+        position: absolute;
+        top: 50%;
+        right: -30px;
+        background-color: var(--cor-verde);
+        opacity: 1;
+        border: none !important;
+        border-top-right-radius: 100px;
+        border-bottom-right-radius: 100px;
+        /* z-index: 1; */
+    }
+
+    .produtos {
+        /* gap: 5; */
+    }
+
+    /* .topo{
             z-index: 5;
             
         } */
-        /* .topo img{
+    /* .topo img{
             filter: invert(10%) sepia(90%) saturate(2000%) hue-rotate(700deg) brightness(100%) contrast(107%);
         } */
-    }
+}
 
 /* FIM, ESTILIZAÇÃO PRA VERSÃO TABLET/MOBILE */

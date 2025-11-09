@@ -25,110 +25,112 @@
 </head>
 
 <body>
-  <!-- area do header -->
-  <header id="header">
-      <div id="news">
-          <p>🎉 Promoção Relâmpago na ToyMania! garante até 50% OFF 🧸</p>
-      </div>
-      <div class="topo">
-          <div class="box">
-              <form action="#">
-                  <label for="pequisa">
-                      <img src="../public/imgs/icons/lupa.png" alt="">
-                  </label>
-                  <input type="search" id="pequisa" class="shadow" placeholder="Buscar produtos">
-              </form>
-          </div>
-          <div class="box logo">
-              <img src="../public/imgs/logo/logotipo-toymania-semfundo.png" alt="logo">
-          </div>
-          <div class="box">
-              <div class="item">
-                  <a href="login.html#container-cadastro" class="btn-red shadow">Entrar</a>
-              </div>
-              <div class="item">
-                  <button type="button">
-                      <p id="valor-carrinho">0</p>
-                      <img src="../public/imgs/icons/carrinho.png" alt="">
-                  </button>
-              </div>
-          </div>
-      </div>
-      <nav id="menu">
-          <button type="button" class="btnClose" onclick="menu()">
-              <img id="btnMenu" src="../public/imgs/icons/arrow-right.png" alt="">
-          </button>
-          <div class="areaLista">
-              <ul id="listaMenu">
-                  <li>
-                      <a onclick="menu()" href="../index.html">Inicio</a>
-                  </li>
-                  <li>
-                      <a onclick="menu()" href="#container-cadastro">Produtos</a>
-                  </li>
-                  <li>
-                      <a onclick="menu()" href="#">Sobre</a>
-                  </li>
-                  <li>
-                      <a onclick="menu()" href="#">Contato</a>
-                  </li>
-              </ul>
-          </div>
-      </nav>
-  </header>
-  <!-- fim, area do header -->
+    <!-- area do header -->
+    <header id="header">
+        <div id="news">
+            <p>🎉 Promoção Relâmpago na ToyMania! garante até 50% OFF 🧸</p>
+        </div>
+        <div class="topo">
+            <div class="box">
+                <form action="#">
+                    <label for="pequisa">
+                        <img src="public/imgs/icons/lupa.png" alt="">
+                    </label>
+                    <input type="search" id="pequisa" class="shadow" placeholder="Buscar produtos">
+                </form>
+            </div>
+            <div class="box logo">
+                <a id="logo-header" href="../index.html">
+                    <img src="../public/imgs/logo/logotipo-toymania-semfundo.png" alt="logo">
+                </a>
+            </div>
+            <div class="box">
+                <div class="item">
+                    <a href="pages/login.html#container-cadastro" class="btn-red shadow">Entrar</a>
+                </div>
+                <div class="item">
+                    <button type="button">
+                        <p id="valor-carrinho">0</p>
+                        <img src="public/imgs/icons/carrinho.png" alt="">
+                    </button>
+                </div>
+            </div>
+        </div>
+        <nav id="menu">
+            <button type="button" class="btnClose" onclick="menu()">
+                <img id="btnMenu" src="../public/imgs/icons/arrow-right.png" alt="">
+            </button>
+            <div class="areaLista">
+                <ul id="listaMenu">
+                    <li>
+                        <a onclick="menu()" href="../index.html">Inicio</a>
+                    </li>
+                    <li>
+                        <a onclick="menu()" href="/pages/cadastrarProduto.html">Produtos</a>
+                    </li>
+                    <li>
+                        <a onclick="menu()" href="#">Sobre</a>
+                    </li>
+                    <li>
+                        <a onclick="menu()" href="#">Contato</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- fim, area do header -->
 
-	<section id="container-cadastro">
-		<div class="container d-flex justify-content-center align-items-center">
-			<div class="card p-5 shadow" style="max-width: 800px; width: 100%">
-				<form id="form-cadastro" class="row g-2">
-					<h2 class="text-center mb-4">Cadastrar Produto</h2>
+    <section id="container-cadastro">
+        <div class="container d-flex justify-content-center align-items-center">
+            <div class="card p-5 shadow" style="max-width: 800px; width: 100%">
+                <form id="form-cadastro" class="row g-2">
+                    <h2 class="text-center mb-4">Cadastrar Produto</h2>
 
-					<div class="col-md-4">
-						<label class="form-label">Nome Do Produto</label>
-						<input type="text" id="nomeProduto" class="form-control" placeholder="Ex: Carrinho" required>
-						<small class="error-message"></small>
-					</div>
+                    <div class="col-md-4">
+                        <label class="form-label">Nome Do Produto</label>
+                        <input type="text" id="nomeProduto" class="form-control" placeholder="Ex: Carrinho" required>
+                        <small class="error-message"></small>
+                    </div>
 
-					<div class="col-md-4">
-						<label for="preco" class="form-label">Preço</label>
-						<input type="number" id="precoProduto" name="preco" class="form-control"
-							placeholder="Ex: R$ 25,00" required />
-						<small class="error-message"></small>
-					</div>
+                    <div class="col-md-4">
+                        <label for="preco" class="form-label">Preço</label>
+                        <input type="number" id="precoProduto" name="preco" class="form-control"
+                            placeholder="Ex: R$ 25,00" required />
+                        <small class="error-message"></small>
+                    </div>
 
-					<div class="col-md-4">
-						<label for="quantidade" class="form-label">Quantidade Em Estoque</label>
-						<input type="number" id="quantidadeProduto" name="quantidade" class="form-control"
-							placeholder="Ex: 100" required />
-						<small class="error-message"></small>
-					</div>
+                    <div class="col-md-4">
+                        <label for="quantidade" class="form-label">Quantidade Em Estoque</label>
+                        <input type="number" id="quantidadeProduto" name="quantidade" class="form-control"
+                            placeholder="Ex: 100" required />
+                        <small class="error-message"></small>
+                    </div>
 
-					<!-- Descrição ocupando toda a largura -->
-					<div class="col-12">
-						<label for="descricao" class="form-label" id="descricao-label">Descrição Do Produto</label>
-						<textarea type="text" id="descricaoProduto" class="form-control" name="descricao"
-							placeholder="Descrição do produto aqui..." required></textarea>
-						<small class="error-message"></small>
-					</div>
+                    <!-- Descrição ocupando toda a largura -->
+                    <div class="col-12">
+                        <label for="descricao" class="form-label" id="descricao-label">Descrição Do Produto</label>
+                        <textarea type="text" id="descricaoProduto" class="form-control" name="descricao"
+                            placeholder="Descrição do produto aqui..." required></textarea>
+                        <small class="error-message"></small>
+                    </div>
 
-					<button class="btn btn-primary w-100" id="btn-cadastrar" type="submit">Cadastrar Produto</button>
-					<button class="btn btn-secondary w-100" id="btn-cancelar" type="reset">Cancelar</button>
+                    <button class="btn btn-primary w-100" id="btn-cadastrar" type="submit">Cadastrar Produto</button>
+                    <button class="btn btn-secondary w-100" id="btn-cancelar" type="reset">Cancelar</button>
 
-				</form>
-			</div>
-		</div>
-	</section>
+                </form>
+            </div>
+        </div>
+    </section>
 
-	<footer class="footer">
-		<div class="footer-container">
-			<p>&copy; <span id="current-year"></span> ToyMania 🧸 | Todos os direitos reservados</p>
-			<p><a href="#">Política de Privacidade</a> · <a href="#">Contato</a></p>
-		</div>
-	</footer>
+    <footer class="footer">
+        <div class="footer-container">
+            <p>&copy; <span id="current-year"></span> ToyMania 🧸 | Todos os direitos reservados</p>
+            <p><a href="#">Política de Privacidade</a> · <a href="#">Contato</a></p>
+        </div>
+    </footer>
 
 
-	<script src="../js/cadastrarProduto.js"></script>
+    <script src="../js/cadastrarProduto.js"></script>
 
 </body>
 
