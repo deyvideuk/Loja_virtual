@@ -116,8 +116,8 @@ function validarDataNascimento(dataNascimento) {
 }
 
 function validarSenha(senha) {
-    // Senha deve ter entre 8 e 14 caracteres, incluindo uma letra maiúscula e um número.
-    const padraoSenha = /^(?=.*[A-Z])(?=.*\d)\S{8,14}$/;
+    // Senha deve ter entre 8 e 20 caracteres, incluindo uma letra maiúscula e um número.
+    const padraoSenha = /^(?=.*[A-Z])(?=.*\d)\S{8,20}$/;
     return padraoSenha.test(senha);
 }
 
@@ -199,7 +199,7 @@ document.addEventListener("DOMContentLoaded", () => {
         { id: "telefone", event: "input", validator: validarTelefone, msg: "Telefone inválido." },
         { id: "data-nascimento", event: "input", validator: validarDataNascimento, msg: "Data de nascimento inválida (mínimo 18 anos)." },
         { id: "numero", event: "input", validator: validarNumero, msg: "Número inválido (1 a 100000)." },
-        { id: "senha", event: "input", validator: validarSenha, msg: "Senha: 8-14 caracteres, 1 maiúscula, 1 número." },
+        { id: "senha", event: "input", validator: validarSenha, msg: "Senha: 8-20 caracteres, 1 maiúscula, 1 número." },
         { id: "complemento", event: "input", validator: (val) => val.trim() !== "", msg: "Complemento é obrigatório." },
     ];
 

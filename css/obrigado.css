@@ -1,11 +1,28 @@
-a {
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+h1 {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 100vh;
     font-size: large;
     text-decoration: none;
-    font-size: 10rem;
+    font-size: 3rem;
     font-family: 'Times New Roman', Times, serif;
+    color: var(--cor-azul);
+}
+h2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: large;
+    text-decoration: none;
+    font-size: 5rem;
+    font-family: 'Times New Roman', Times, serif;
+    color: var(--cor-azul);
 }
