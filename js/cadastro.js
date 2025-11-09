@@ -1,14 +1,18 @@
+// FUNÇÕES DE CARREGAMENTO DE ENDEREÇO (IBGE e ViaCEP)
+
 async function carregarEstados() {
     const url = "https://servicodados.ibge.gov.br/api/v1/localidades/estados";
+    const selectEstado = document.getElementById("estado");
+
+    if (!selectEstado) return;
 
     try {
         const resposta = await fetch(url);
         const dados = await resposta.json();
 
-        const selectEstado = document.getElementById("estado");
-
         dados.sort((a, b) => a.nome.localeCompare(b.nome));
 
+        selectEstado.innerHTML = '<option value="">Selecione o estado</option>';
         dados.forEach(estado => {
             const option = document.createElement("option");
             option.value = estado.sigla;
@@ -17,18 +21,30 @@ async function carregarEstados() {
         });
 
     } catch (erro) {
-        console.log("Erro ao carregar estados: ", erro);
+        console.error("Erro ao carregar estados: ", erro);
     }
 }
 
+/**
+ * Carrega a lista de cidades de um estado (UF) e popula o select #cidade.
+ * @param {string} uf - A sigla do estado (UF).
+ */
+
 async function carregarCidades(uf) {
+    const selectCidade = document.getElementById("cidade");
+
+    if (!selectCidade) return;
+
+    if (!uf) {
+        selectCidade.innerHTML = '<option value="">Selecione a cidade</option>';
+        return;
+    }
+
     const url = `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${uf}/municipios`;
 
     try {
         const resposta = await fetch(url);
         const dados = await resposta.json();
-
-        const selectCidade = document.getElementById("cidade");
 
         selectCidade.innerHTML = '<option value="">Selecione a cidade</option>';
 
@@ -42,37 +58,17 @@ async function carregarCidades(uf) {
         });
 
     } catch (erro) {
-        console.log("Erro ao carregar cidades: ", erro);
+        console.error("Erro ao carregar cidades: ", erro);
     }
 }
 
-document.getElementById("estado").addEventListener("change", function () {
-    const uf = this.value;
 
-    if (uf) {
-        carregarCidades(uf);
-    } else {
-        document.getElementById("cidade").innerHTML = '<option value="">Selecione a cidade</option>';
-    }
-});
-
-carregarEstados();
-
-// Controle para evitar chamadas/alerts repetidos para o mesmo CEP
-let isFetchingCep = false;
-const cepErroCache = new Set(); // guarda CEPs que retornaram erro para evitar alert repetido
-
+// Busca o endereço pelo CEP usando a API ViaCEP e preenche os campos.
 async function buscarCEP() {
-    const cep = document.getElementById("cep").value.replace(/\D/g, '');
+    const cepInput = document.getElementById("cep");
+    const cep = cepInput.value.replace(/\D/g, '');
 
     if (cep.length !== 8) return;
-
-    // Se já tivemos erro para esse CEP, não insista novamente
-    if (cepErroCache.has(cep)) return;
-
-    // Evita chamadas concorrentes
-    if (isFetchingCep) return;
-    isFetchingCep = true;
 
     const url = `https://viacep.com.br/ws/${cep}/json/`;
 
@@ -81,8 +77,6 @@ async function buscarCEP() {
         const dados = await resposta.json();
 
         if (dados.erro) {
-            // marca esse CEP como inválido para evitar alertas repetidos
-            cepErroCache.add(cep);
             alert("CEP não encontrado");
             return;
         }
@@ -97,208 +91,11 @@ async function buscarCEP() {
         }
 
     } catch (erro) {
-        console.log("Erro ao buscar CEP:", erro);
-    } finally {
-        // garante que a flag seja limpa mesmo em erro
-        isFetchingCep = false;
+        console.error("Erro ao buscar CEP:", erro);
     }
 }
 
-const cepInput = document.getElementById("cep");
-if (cepInput) {
-    cepInput.addEventListener("blur", buscarCEP);
-
-    cepInput.addEventListener("input", function () {
-        const onlyDigits = this.value.replace(/\D/g, '');
-        if (onlyDigits.length === 8) {
-            buscarCEP();
-        }
-    });
-}
-
-const form = document.getElementById("form-cadastro");
-
-const nomeInput = document.getElementById("nome");
-const cpfInput = document.getElementById("cpf");
-const emailInput = document.getElementById("email");
-const telefoneInput = document.getElementById("telefone");
-const numeroInput = document.getElementById("numero");
-const dataNascimentoInput = document.getElementById("data-nascimento");
-const senhaInput = document.getElementById("senha");
-const confirmarSenhaInput = document.getElementById("confirmar-senha");
-const complementoInput = document.getElementById("complemento");
-
-form.addEventListener("submit", function (event) {
-    event.preventDefault();
-    console.log("Formulário tentou enviar, validando...");
-});
-
-
-function mostrarErro(input, mensagem) {
-    const small = input.parentElement.querySelector(".error-message");
-    small.innerText = mensagem;
-    small.style.display = "block";
-    small.style.color = "red";
-    input.style.borderColor = "red";
-}
-
-function limparErro(input) {
-    const small = input.parentElement.querySelector(".error-message");
-    small.innerText = "";
-    input.style.borderColor = "";
-}
-
-form.addEventListener("submit", function (event) {
-    event.preventDefault();
-    
-    let valido = true;
-
-    if (nomeInput && (nomeInput.value.trim() === "" || nomeInput.value.length < 6)) {
-        mostrarErro(nomeInput, "Por favor, insira seu nome completo.");
-        valido = false;
-    } else if (nomeInput) {
-        limparErro(nomeInput);
-    }
-
-    if (valido) {
-        console.log("Formulário válido e pronto para envio!");
-    }
-
-    if (emailInput.value.trim() === "" || !validarEmail(emailInput.value)) {
-        mostrarErro(emailInput, "Por favor, insira um email válido.");
-        valido = false;
-    } else {
-        limparErro(emailInput);
-    }
-
-    if (telefoneInput.value.trim() === "" || !validarTelefone(telefoneInput.value)) {
-        mostrarErro(telefoneInput, "Por favor, insira um telefone válido.");
-        valido = false;
-    } else {
-        limparErro(telefoneInput);
-    }
-
-    if (dataNascimentoInput.value.trim() === "" || !validarDataNascimento(dataNascimentoInput.value)) {
-        mostrarErro(dataNascimentoInput, "Por favor, insira uma data de nascimento válida.");
-        valido = false;
-    } else {
-        limparErro(dataNascimentoInput);
-    }
-    if (!validarNumero(numeroInput.value) && numeroInput.value.trim() !== "") {
-        mostrarErro(numeroInput, "Por favor, insira um número válido (apenas dígitos, 1 a 100000).");
-        valido = false;
-    } else {
-        limparErro(numeroInput);
-    }
-
-    if (!validarSenha(senhaInput.value)) {
-        mostrarErro(senhaInput, "A senha deve ter entre 8 e 14 caracteres, incluindo uma letra maiúscula e um número.");
-        valido = false;
-    } else {
-        limparErro(senhaInput);
-    }
-
-    if (!confirmarSenha(senhaInput.value, confirmarSenhaInput.value)) {
-        mostrarErro(confirmarSenhaInput, "As senhas não coincidem.");
-        valido = false;
-    } else {
-        limparErro(confirmarSenhaInput);
-    }
-
-    if (!validarCPF(document.getElementById("cpf").value)) {
-        mostrarErro(document.getElementById("cpf"), "CPF inválido.");
-        valido = false;
-    } else {
-        limparErro(document.getElementById("cpf"));
-    }
-    if (!validarComplemento(complementoInput.value)) {
-        mostrarErro(complementoInput, "Por favor, insira um complemento válido.");
-        valido = false;
-    }   else {
-        limparErro(complementoInput);
-    }
-
-
-    if (valido) {
-        console.log("Formulário válido e pronto para envio!");
-    }
-
-});
-nomeInput.addEventListener("blur", function () {
-    if (nomeInput.value.trim() === "" || nomeInput.value.length < 6) {
-        mostrarErro(nomeInput, "Por favor, insira seu nome completo.");
-    } else {
-        limparErro(nomeInput);
-}
-});
-
-
-
-cpfInput.addEventListener("input", function () {
-    if (!validarCPF(cpfInput.value) && cpfInput.value.trim() !== "") {
-        mostrarErro(cpfInput, "Por favor, insira um CPF válido.");
-    } else {
-        limparErro(cpfInput);
-    }
-}); 
-
-emailInput.addEventListener("input", function () {
-    if (!validarEmail(emailInput.value) && emailInput.value.trim() !== "") {
-        mostrarErro(emailInput, "Por favor, insira um email válido.");
-    } else {
-        limparErro(emailInput);
-    }
-});
-
-telefoneInput.addEventListener("input", function () {
-    if (!validarTelefone(telefoneInput.value)) {
-        mostrarErro(telefoneInput, "Por favor, insira um telefone válido.");
-    } else {
-        limparErro(telefoneInput);
-    }
-});
-
-dataNascimentoInput.addEventListener("input", function () {
-    if (!validarDataNascimento(dataNascimentoInput.value)) {
-        mostrarErro(dataNascimentoInput, "Por favor, insira uma data de nascimento válida.");
-    } else {
-        limparErro(dataNascimentoInput);
-    }
-});
-
-numeroInput.addEventListener("input", function () {
-    if (!validarNumero(numeroInput.value)) {
-        mostrarErro(numeroInput, "Por favor, insira um número válido (apenas dígitos, 1 a 100000).");
-    } else {
-        limparErro(numeroInput);
-    }
-});
-
-senhaInput.addEventListener("input", function () {
-    if (!validarSenha(senhaInput.value)) {
-        mostrarErro(senhaInput, "A senha deve ter entre 8 e 14 caracteres, incluindo uma letra maiúscula e um número.");
-    } else {
-        limparErro(senhaInput);
-    }
-});
-
-confirmarSenhaInput.addEventListener("input", function () {
-    if (!confirmarSenha(senhaInput.value, confirmarSenhaInput.value)) {
-        mostrarErro(confirmarSenhaInput, "As senhas não coincidem.");
-    } else {
-        limparErro(confirmarSenhaInput);
-    }
-});
-
-complementoInput.addEventListener("input", function () {
-    if (!validarComplemento(complementoInput.value)) {
-        mostrarErro(complementoInput, "Por favor, insira um complemento válido.");
-    } else {
-        limparErro(complementoInput);
-    }
-});
-
-
+// FUNÇÕES DE VALIDAÇÃO
 
 function validarEmail(email) {
     const padraoEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -306,7 +103,7 @@ function validarEmail(email) {
 }
 
 function validarTelefone(telefone) {
-    const padraoTelefone = /^\s*(\d{2}|\d{0})[-. ]?(\d{5}|\d{4})[-. ]?(\d{4})[-. ]?\s*$/;
+    const padraoTelefone = /^\s*\(?\d{2}\)?\s*(\d{4,5}[-.\s]?\d{4})\s*$/;
     return padraoTelefone.test(telefone);
 }
 
@@ -315,10 +112,11 @@ function validarDataNascimento(dataNascimento) {
     const dataNascimentoDate = new Date(dataNascimento);
     const idadeMinima = 18;
     const idade = dataAtual.getFullYear() - dataNascimentoDate.getFullYear();
-    return idade >= idadeMinima;
+    return !isNaN(dataNascimentoDate) && idade >= idadeMinima;
 }
 
 function validarSenha(senha) {
+    // Senha deve ter entre 8 e 14 caracteres, incluindo uma letra maiúscula e um número.
     const padraoSenha = /^(?=.*[A-Z])(?=.*\d)\S{8,14}$/;
     return padraoSenha.test(senha);
 }
@@ -327,101 +125,163 @@ function confirmarSenha(senha, confirmarSenha) {
     return senha === confirmarSenha;
 }
 
-/**
- * Valida se o valor do número (número da casa) é um inteiro positivo válido.
- * Aceita apenas dígitos (sem sinais ou espaços) e verifica intervalo (1..100000).
- * Retorna true se for válido, false caso contrário.
- */
 function validarNumero(valor) {
-    // garante que lidamos com string
-    if (valor === null || valor === undefined) return false;
-    if (typeof valor !== 'string') valor = String(valor);
-    const trimmed = valor.trim();
-    if (trimmed === '') return false;
-    // apenas dígitos
-    if (!/^\d+$/.test(trimmed)) return false;
-    const num = Number(trimmed);
-    if (!Number.isFinite(num) || !Number.isInteger(num)) return false;
-    if (num <= 0 || num > 100000) return false;
-    return true;
+    const num = Number(valor);
+    return Number.isInteger(num) && num > 0 && num <= 100000;
 }
 
-/**
- * Valida um CPF (lógica simples baseada no seu script Python).
- * @param {string} cpf - O CPF para validar (pode estar formatado ou não).
- * @returns {boolean} - True se for válido, False se for inválido.
- */
 function validarCPF(cpf) {
-
-    // 1. Limpa o CPF, deixando apenas os números
-    // (Equivalente ao seu 'numeros = [int(digito)...]' do Python)
+    // Validação simplificada: apenas verifica se tem 11 dígitos numéricos
     const cpfLimpo = cpf.replace(/\D/g, '');
-
-    // 2. Verifica se o CPF tem 11 dígitos
-    if (cpfLimpo.length !== 11) {
-        console.error("CPF deve ter 11 dígitos.");
-        return false;
-    }
-
-    // 3. Verifica CPFs inválidos conhecidos (todos os dígitos iguais)
-    // O seu script Python não tinha isso, mas é uma melhoria simples e importante!
-    if (/^(\d)\1+$/.test(cpfLimpo)) {
-        console.error("CPF com todos os dígitos iguais é inválido.");
-        return false;
-    }
-
-    // --- 4. Cálculo do Primeiro Dígito Verificador (DV1) ---
-
-    // O seu Python usou: sum(a*b for a, b in zip(numeros[0:9], range(10, 1, -1)))
-    // Em JS, um loop 'for' é o jeito mais simples de fazer isso:
-
-    let soma = 0;
-    for (let i = 0; i < 9; i++) {
-        // Multiplica os 9 primeiros dígitos pela sequência (10, 9, 8, ..., 2)
-        soma += parseInt(cpfLimpo[i]) * (10 - i);
-    }
-
-    // O seu Python fez: (soma_produtos * 10 % 11) % 10
-    // Vamos fazer de um jeito um pouco mais "passo a passo" para entender:
-    let resto = (soma * 10) % 11;
-
-    // Se o resto for 10 ou 11, ele vira 0
-    if (resto === 10 || resto === 11) {
-        resto = 0;
-    }
-
-    const dv1 = resto;
-
-    // 5. Verifica se o DV1 é válido
-    if (dv1 !== parseInt(cpfLimpo[9])) {
-        console.error("Primeiro dígito verificador está incorreto.");
-        return false;
-    }
-
-    // --- 6. Cálculo do Segundo Dígito Verificador (DV2) ---
-
-    // Reinicia a soma para calcular o segundo dígito
-    soma = 0;
-    for (let i = 0; i < 10; i++) {
-        // Agora multiplica os 10 primeiros dígitos (incluindo o DV1)
-        // pela sequência (11, 10, 9, ..., 2)
-        soma += parseInt(cpfLimpo[i]) * (11 - i);
-    }
-
-    resto = (soma * 10) % 11;
-    if (resto === 10 || resto === 11) {
-        resto = 0;
-    }
-
-    const dv2 = resto;
-
-    // 7. Verifica se o DV2 é válido
-    if (dv2 !== parseInt(cpfLimpo[10])) {
-        console.error("Segundo dígito verificador está incorreto.");
-        return false;
-    }
-
-    // Se passou por todas as verificações, o CPF é válido!
-    console.log(`O CPF ${cpf} é VÁLIDO.`);
-    return true;
+    return cpfLimpo.length === 11 && !/^(\d)\1+$/.test(cpfLimpo);
 }
+
+// FUNÇÕES DE ERROS
+
+function mostrarErro(input, mensagem) {
+    const small = input.parentElement.querySelector(".error-message");
+    if (small) {
+        small.innerText = mensagem;
+        small.style.color = "red";
+    }
+    // Adiciona classe de erro no elemento pai para respeitar o CSS (mostra <small>)
+    if (input.parentElement) {
+        input.parentElement.classList.add('error');
+    }
+    input.style.borderColor = "red";
+}
+
+function limparErro(input) {
+    const small = input.parentElement.querySelector(".error-message");
+    if (small) {
+        small.innerText = "";
+    }
+    // Remove a classe de erro do elemento pai para esconder a mensagem
+    if (input.parentElement) {
+        input.parentElement.classList.remove('error');
+    }
+    input.style.borderColor = "";
+}
+
+// LÓGICA PRINCIPAL (EVENT LISTENERS)
+
+document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("form-cadastro");
+    const estadoSelect = document.getElementById("estado");
+    const cepInput = document.getElementById("cep");
+
+    // Carregamento inicial de estados
+    carregarEstados();
+
+    // Event Listeners para CEP
+    if (cepInput) {
+        cepInput.addEventListener("blur", buscarCEP);
+        cepInput.addEventListener("input", function () {
+            const onlyDigits = this.value.replace(/\D/g, '');
+            if (onlyDigits.length === 8) {
+                buscarCEP();
+            }
+        });
+    }
+
+    // Event Listener para mudança de estado
+    if (estadoSelect) {
+        estadoSelect.addEventListener("change", function () {
+            carregarCidades(this.value);
+        });
+    }
+
+    // Configuração de validação em tempo real (blur/input)
+    const camposParaValidacao = [
+        { id: "nome", event: "blur", validator: (val) => val.trim().length >= 6, msg: "Nome completo (mínimo 6 caracteres)." },
+        { id: "cpf", event: "input", validator: validarCPF, msg: "CPF inválido." },
+        { id: "email", event: "input", validator: validarEmail, msg: "Email inválido." },
+        { id: "telefone", event: "input", validator: validarTelefone, msg: "Telefone inválido." },
+        { id: "data-nascimento", event: "input", validator: validarDataNascimento, msg: "Data de nascimento inválida (mínimo 18 anos)." },
+        { id: "numero", event: "input", validator: validarNumero, msg: "Número inválido (1 a 100000)." },
+        { id: "senha", event: "input", validator: validarSenha, msg: "Senha: 8-14 caracteres, 1 maiúscula, 1 número." },
+        { id: "complemento", event: "input", validator: (val) => val.trim() !== "", msg: "Complemento é obrigatório." },
+    ];
+
+    camposParaValidacao.forEach(campo => {
+        const input = document.getElementById(campo.id);
+        if (input) {
+            input.addEventListener(campo.event, function () {
+                if (this.value.trim() === "") {
+                    limparErro(this); // Não mostra erro se o campo estiver vazio, apenas no submit
+                    return;
+                }
+                if (!campo.validator(this.value)) {
+                    mostrarErro(this, campo.msg);
+                } else {
+                    limparErro(this);
+                }
+            });
+        }
+    });
+
+    // Validação de confirmação de senha
+    const senhaInput = document.getElementById("senha");
+    const confirmarSenhaInput = document.getElementById("confirmar-senha");
+
+    if (senhaInput && confirmarSenhaInput) {
+        const validarConfirmacao = () => {
+            if (confirmarSenhaInput.value.trim() === "") {
+                limparErro(confirmarSenhaInput);
+                return;
+            }
+            if (!confirmarSenha(senhaInput.value, confirmarSenhaInput.value)) {
+                mostrarErro(confirmarSenhaInput, "As senhas não coincidem.");
+            } else {
+                limparErro(confirmarSenhaInput);
+            }
+        };
+        senhaInput.addEventListener("input", validarConfirmacao);
+        confirmarSenhaInput.addEventListener("input", validarConfirmacao);
+    }
+
+    // Event Listener para submissão do formulário
+    if (form) {
+        form.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            let valido = true;
+
+            // Limpa todos os erros antes de revalidar
+            document.querySelectorAll("#form-cadastro input, #form-cadastro select").forEach(input => limparErro(input));
+
+            // Lista de campos e suas validações
+            const campos = [
+                { input: document.getElementById("nome"), validator: (val) => val.trim().length >= 6, msg: "Nome completo (mínimo 6 caracteres)." },
+                { input: document.getElementById("cpf"), validator: validarCPF, msg: "CPF inválido." },
+                { input: document.getElementById("email"), validator: validarEmail, msg: "Email inválido." },
+                { input: document.getElementById("telefone"), validator: validarTelefone, msg: "Telefone inválido." },
+                { input: document.getElementById("data-nascimento"), validator: validarDataNascimento, msg: "Data de nascimento inválida (mínimo 18 anos)." },
+                { input: document.getElementById("numero"), validator: validarNumero, msg: "Número inválido (1 a 100000)." },
+                { input: document.getElementById("senha"), validator: validarSenha, msg: "Senha: 8-14 caracteres, 1 maiúscula, 1 número." },
+                { input: document.getElementById("confirmar-senha"), validator: (val) => confirmarSenha(document.getElementById("senha").value, val), msg: "As senhas não coincidem." },
+                { input: document.getElementById("complemento"), validator: (val) => val.trim() !== "", msg: "Complemento é obrigatório." },
+                // Validação de campos de endereço (obrigatórios)
+                { input: document.getElementById("cep"), validator: (val) => val.replace(/\D/g, '').length === 8, msg: "CEP inválido ou incompleto." },
+                { input: document.getElementById("endereco"), validator: (val) => val.trim() !== "", msg: "Endereço é obrigatório." },
+                { input: document.getElementById("bairro"), validator: (val) => val.trim() !== "", msg: "Bairro é obrigatório." },
+                { input: document.getElementById("estado"), validator: (val) => val.trim() !== "", msg: "Estado é obrigatório." },
+                { input: document.getElementById("cidade"), validator: (val) => val.trim() !== "", msg: "Cidade é obrigatória." },
+            ];
+
+            campos.forEach(campo => {
+                if (campo.input && (!campo.input.value.trim() || !campo.validator(campo.input.value))) {
+                    mostrarErro(campo.input, campo.msg);
+                    valido = false;
+                }
+            });
+
+            if (valido) {
+                console.log("Formulário válido! Enviando...");
+                form.submit();
+            } else {
+                console.log("Formulário contém erros. Corrija antes de enviar.");
+            }
+        });
+    }
+});
