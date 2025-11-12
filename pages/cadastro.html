@@ -83,108 +83,86 @@
   <section id="container-cadastro">
     <div class="container d-flex justify-content-center align-items-center">
       <div class="card p-5 shadow" style="max-width: 600px; width: 100%">
-        <form action="https://formsubmit.co/deyvideukcosta.dc@gmail.com" method="POST" id="form-cadastro"
-          class="row g-3">
-          <input type="hidden" name="_cc" value="jeeh2200@gmail.com,lucas.workps@gmail.com,antoniocesarcostademelo@gmail.com">
-          <h2 class="text-center mb-4 ">Criar Conta</h2>
-
+        <form action="http://localhost:3000/api/usuarios" method="POST" id="form-cadastro" class="row g-3">
           <div class="col-md-6">
             <label class="form-label">Nome completo</label>
-            <input type="text" id="nome" class="form-control" placeholder="Ex: Ana Souza" required> <small
-              class="error-message"></small>
-          </div>
-
-
-          <div class="col-md-6">
-            <label for="cpf" class="form-label">CPF ou CNPJ</label>
-            <input type="text" id="cpf" name="cpf" class="form-control" placeholder="Ex: 123.456.789-09" required />
-            <small class="error-message"></small>
+            <input type="text" id="nomeUsuario" name="nomeUsuario" class="form-control" placeholder="Ex: Ana Souza" required>
           </div>
 
           <div class="col-md-6">
-            <label for="email" class="form-label">E-mail</label>
-            <input type="email" id="email" class="form-control" name="email" placeholder="seuemail@exemplo.com"
-              required />
-            <small class="error-message"></small>
+            <label for="cpfUsuario" class="form-label">CPF ou CNPJ</label>
+            <input type="text" id="cpfUsuario" name="cpfUsuario" class="form-control" placeholder="Ex: 123.456.789-09" required>
           </div>
 
           <div class="col-md-6">
-            <label for="telefone" class="form-label">Telefone</label>
-            <input type="tel" id="telefone" name="telefone" class="form-control" placeholder="Ex: (11) 91234-5678"
-              required />
-            <small class="error-message"></small>
+            <label for="emailUsuario" class="form-label">E-mail</label>
+            <input type="email" id="emailUsuario" name="emailUsuario" class="form-control" placeholder="seuemail@exemplo.com" required>
           </div>
 
           <div class="col-md-6">
-            <label for="data-nascimento" class="form-label">Data de nascimento</label>
-            <input type="date" id="data-nascimento" class="form-control" name="data-nascimento"
-              placeholder="Ex: 01/01/2000" required /> <small class="error-message"></small>
+            <label for="telefoneUsuario" class="form-label">Telefone</label>
+            <input type="tel" id="telefoneUsuario" name="telefoneUsuario" class="form-control" placeholder="Ex: (11) 91234-5678" required>
           </div>
 
           <div class="col-md-6">
-            <label for="cep" class="form-label">CEP</label>
-            <input type="text" id="cep" name="cep" class="form-control" placeholder="Ex: 58000-000" required /> <small
-              class="error-message"></small>
+            <label for="dataUsuario" class="form-label">Data de nascimento</label>
+            <input type="date" id="dataUsuario" name="dataUsuario" class="form-control" required>
           </div>
 
           <div class="col-md-6">
-            <label for="numero" class="form-label">Número</label>
-            <input type="text" id="numero" name="numero" class="form-control" placeholder="Ex: 123" required> <small
-              class="error-message"></small>
+            <label for="cepUsuario" class="form-label">CEP</label>
+            <input type="text" id="cepUsuario" name="cepUsuario" class="form-control" placeholder="Ex: 58000-000" required>
           </div>
 
           <div class="col-md-6">
-            <label for="endereco" class="form-label">Endereço</label>
-            <input type="text" id="endereco" name="endereco" class="form-control" placeholder="Ex: Rua das Flores"
-              required /> <small class="error-message"></small>
+            <label for="numeroUsuario" class="form-label">Número</label>
+            <input type="number" id="numeroUsuario" name="numeroUsuario" class="form-control" placeholder="Ex: 123" required>
           </div>
 
           <div class="col-md-6">
-            <label for="complemento" class="form-label">Complemento</label>
-            <input type="text" id="complemento" name="complemento" class="form-control"
-              placeholder="Ex: casa, apartamento" required /> <small class="error-message"></small>
+            <label for="enderecoUsuario" class="form-label">Endereço</label>
+            <input type="text" id="enderecoUsuario" name="enderecoUsuario" class="form-control" placeholder="Ex: Rua das Flores" required>
           </div>
 
           <div class="col-md-6">
-            <label for="bairro" class="form-label">Bairro</label>
-            <input type="text" id="bairro" name="bairro" class="form-control" placeholder="Ex: Centro" required />
-            <small class="error-message"></small>
+            <label for="complementoUsuario" class="form-label">Complemento</label>
+            <input type="text" id="complementoUsuario" name="complementoUsuario" class="form-control" placeholder="Ex: casa, apartamento">
           </div>
 
           <div class="col-md-6">
-            <select id="estado" name="estado" class="form-control" required>
+            <label for="bairroUsuario" class="form-label">Bairro</label>
+            <input type="text" id="bairroUsuario" name="bairroUsuario" class="form-control" placeholder="Ex: Centro" required>
+          </div>
+
+          <div class="col-md-6">
+            <select id="estadoUsuario" name="estadoUsuario" class="form-control" required>
               <option value="">Selecione o estado</option>
-            </select> <small class="error-message"></small>
+            </select>
           </div>
 
           <div class="col-md-6">
-            <select id="cidade" name="cidade" class="form-control" required>
+            <select id="cidadeUsuario" name="cidadeUsuario" class="form-control" required>
               <option value="">Selecione a cidade</option>
-            </select> <small class="error-message"></small>
+            </select>
           </div>
 
           <div class="col-md-6">
-            <label for="senha" class="form-label">Senha</label>
-            <input type="password" id="senha" name="senha" class="form-control" placeholder="********" required />
-            <small class="error-message"></small>
+            <label for="senhaUsuario" class="form-label">Senha</label>
+            <input type="password" id="senhaUsuario" name="senhaUsuario" class="form-control" placeholder="********" required>
           </div>
 
           <div class="col-md-6">
-            <label for="confirmar-senha" class="form-label">Confirmar senha</label>
-            <input type="password" id="confirmar-senha" name="confirmar-senha" class="form-control"
-              placeholder="********" required /> <small class="error-message"></small>
-            <br>
+            <label for="confirmarSenha" class="form-label">Confirmar senha</label>
+            <input type="password" id="confirmarSenha" class="form-control" placeholder="********" required>
           </div>
 
-          <input type="hidden" name="_captcha" value="false">
-          <input type="hidden" name="_next" value="https://toymania.netlify.app/pages/obrigado.html">
-          <!-- <input type="hidden" name="_next" value="http://127.0.0.1:5500/pages/obrigado.html"> -->
+          <div class="alert alert-warning">
+            <p id="msg"></p>
+          </div>
 
           <button class="btn btn-primary w-100" id="btn-cadastrar" type="submit">Cadastrar</button>
-          <br>
-          <p id="tem-conta">Já tem conta? <a href="login.html#container-cadastro">Fazer login</a></p>
-
         </form>
+
       </div>
     </div>
   </section>
