@@ -1,6 +1,10 @@
 
 body {
     background: linear-gradient(to right, #FFFFFF, #35A7FF);
+    background-image: url(../public/imgs/backgrounds/background_login&cadastro.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
     min-height: 100vh;
 }
 
