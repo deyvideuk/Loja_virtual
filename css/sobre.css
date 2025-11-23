@@ -34,3 +34,11 @@
 .texto p{
     text-shadow: 1px 1px 10px black;
 }
+
+#header{
+    margin-bottom: 0;
+}
+
+.footer{
+    margin-top: 0 !important;
+}
