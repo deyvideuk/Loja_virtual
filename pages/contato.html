@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="shortcut icon" href="../public/imgs/favicon/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="public/imgs/favicon/favicon.ico" type="image/x-icon">
     <meta property="og:title" content="ToyMania — Diversão em Cada Clique">
     <meta property="og:description"
         content="Loja virtual com os brinquedos mais divertidos e criativos! Explore, escolha e se divirta com a ToyMania.">
@@ -15,13 +15,14 @@
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="ToyMania">
     <meta property="og:locale" content="pt_BR">
+    <meta name="theme-color" content="#6BF178">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../css/index.css">
-    <link rel="stylesheet" href="../css/login.css">
     <script src="../js/index.js" defer></script>
-    <title>Login | ToyMania Loja Virtual</title>
+    <script src="../js/teste.js"></script>
+    <title>Sobre | ToyMania Loja Virtual</title>
 </head>
 
 <body>
@@ -46,7 +47,7 @@
             </div>
             <div class="box">
                 <div class="item">
-                    <a href="pages/login.html#container-cadastro" class="btn-red shadow">Entrar</a>
+                    <a href="../pages/login.html#container-cadastro" class="btn-red shadow">Entrar</a>
                 </div>
                 <div class="item">
                     <button type="button">
@@ -58,7 +59,7 @@
         </div>
         <nav id="menu">
             <button type="button" class="btnClose" onclick="menu()">
-                <img id="btnMenu" src="../public/imgs/icons/arrow-right.png" alt="">
+                <img id="btnMenu" src="/public/imgs/icons/arrow-right.png" alt="">
             </button>
             <div class="areaLista">
                 <ul id="listaMenu">
@@ -80,51 +81,20 @@
     </header>
     <!-- fim, area do header -->
 
-    <main>
-        <section id="container-cadastro">
-            <div class="container pt-5 pb-5 d-flex justify-content-center align-items-center">
-                <div class="card p-5 shadow" style="max-width: 600px; width: 100%">
-                    <h2 class="text-center mb-4 ">Login</h2>
+    <!-- area Sobre-->
+    
+    <!-- fim, area Sobre-->
 
-                    <form id="form-cadastro" class="d-flex gap-4 flex-column">
+    <span class="borda azul"></span>
 
-                        <div class="w-100">
-                            <label for="email" class="form-label">E-mail</label>
-                            <input type="email" id="email" class="form-control" name="email"
-                                placeholder="seuemail@exemplo.com" required />
-                        </div>
-
-                        <div class="w-100">
-                            <label for="senha" class="form-label">Senha</label>
-                            <input type="password" id="senha" name="senha" class="form-control" placeholder="********"
-                                required />
-                        </div>
-
-                        <button class="btn btn-primary w-75 m-auto" id="btn-cadastrar">Cadastrar</button>
-                    </form>
-
-                    <br>
-                    <p id="tem-conta">Não tem uma conta? <a href="cadastro.html#container-cadastro">Cadastrar-se</a></p>
-
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="footer">
+    <!-- area do footer -->
+    <footer class="footer mt-5 w-100">
         <div class="footer-container">
-            <p>© 2025 ToyMania 🧸 | Todos os direitos reservados</p>
-            <p><a href="#">Política de Privacidade</a> · <a href="#">Contato</a></p>
+            <p>&copy; 2025 ToyMania 🧸 | Todos os direitos reservados</p>
+            <p><a href="#">Política de Privacidade</a> · <a href="/pages/contato.html">Contato</a></p>
         </div>
     </footer>
-
-
-    <!-- <script src="../js/cadastro.js" defer></script>
-  <script>
-    carregarEstados();
-  </script> -->
-
-
+    <!-- fim, area do footer -->
 </body>
 
 </html>

@@ -1,0 +1,36 @@
+
+#sobre{
+    /* border: 1px solid red; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 10px;
+    background-color: var(--cor-verde);
+}
+
+.titulo{
+    /* border: 1px solid red; */
+    padding: 10px;
+    color: var(--cor-amarelo);
+}
+
+.titulo h1{
+    font-weight: 900;
+    font-size: clamp(2rem, 2.5vw, 2.5rem);
+}
+
+.texto{
+    color: var(--cor-branco);
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    /* border: 1px solid red; */
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.texto p{
+    text-shadow: 1px 1px 10px black;
+}
