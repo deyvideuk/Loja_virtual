@@ -1,3 +1,7 @@
+<?php
+    include_once 'php/conexao.php';
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -42,7 +46,7 @@
             </div>
             <div class="box logo">
                 <a id="logo-header" href="../index.html">
-                    <img src="../public/imgs/logo/logotipo-toymania-semfundo.png" alt="logo">
+                    <img src="public/imgs/logo/logotipo-toymania-semfundo.png" alt="logos">
                 </a>
             </div>
             <div class="box">
@@ -59,7 +63,7 @@
         </div>
         <nav id="menu">
             <button type="button" class="btnClose" onclick="menu()">
-                <img id="btnMenu" src="/public/imgs/icons/arrow-right.png" alt="">
+                <img id="btnMenu" src="public/imgs/icons/arrow-right.png" alt="">
             </button>
             <div class="areaLista">
                 <ul id="listaMenu">
@@ -67,13 +71,13 @@
                         <a onclick="menu()" href="index.html">Inicio</a>
                     </li>
                     <li>
-                        <a onclick="menu()" href="/pages/cadastrarProduto.html">Produtos</a>
+                        <a onclick="menu()" href="./pages/cadastrarProduto.html">Produtos</a>
                     </li>
                     <li>
-                        <a onclick="menu()" href="/pages/sobre.html">Sobre</a>
+                        <a onclick="menu()" href="./pages/sobre.html">Sobre</a>
                     </li>
                     <li>
-                        <a onclick="menu()" href="/pages/contato.html">Contato</a>
+                        <a onclick="menu()" href="./pages/contato.html">Contato</a>
                     </li>
                 </ul>
             </div>
@@ -138,7 +142,7 @@
 
             <div id="produtos" class="produtos">
                 <div class="box-card card d-flex justify-content-center">
-                    <img src="/public/imgs/produtos/novos/uno.png" alt="" class="card-img-top">
+                    <img src="public/imgs/produtos/novos/uno.png" alt="" class="card-img-top">
                     <div class="card-body">
                         <h3 class="card-title">UNO jogo de cartas no mercy</h3>
                         <p class="card-text">1</p>
@@ -147,7 +151,7 @@
                     </div>
                 </div>
                 <div class="box-card card d-flex justify-content-center">
-                    <img src="/public/imgs/produtos/novos/uno.png" alt="" class="card-img-top">
+                    <img src="public/imgs/produtos/novos/uno.png" alt="" class="card-img-top">
                     <div class="card-body">
                         <h3 class="card-title">UNO jogo de cartas no mercy</h3>
                         <p class="card-text">2</p>
@@ -157,7 +161,7 @@
                 </div>
 
                 <div class="box-card card d-flex justify-content-center">
-                    <img src="/public/imgs/produtos/novos/uno.png" alt="" class="card-img-top">
+                    <img src="public/imgs/produtos/novos/uno.png" alt="" class="card-img-top">
                     <div class="card-body">
                         <h3 class="card-title">UNO jogo de cartas no mercy</h3>
                         <p class="card-text">3</p>
@@ -167,7 +171,7 @@
                 </div>
 
                 <div class="box-card card d-flex justify-content-center">
-                    <img src="/public/imgs/produtos/novos/uno.png" alt="" class="card-img-top">
+                    <img src="public/imgs/produtos/novos/uno.png" alt="" class="card-img-top">
                     <div class="card-body">
                         <h3 class="card-title">UNO jogo de cartas no mercy</h3>
                         <p class="card-text">4</p>
@@ -177,7 +181,7 @@
                 </div>
 
                 <div class="box-card card d-flex justify-content-center">
-                    <img src="/public/imgs/produtos/novos/uno.png" alt="" class="card-img-top">
+                    <img src="public/imgs/produtos/novos/uno.png" alt="" class="card-img-top">
                     <div class="card-body">
                         <h3 class="card-title">UNO jogo de cartas no mercy</h3>
                         <p class="card-text">5</p>
@@ -187,7 +191,7 @@
                 </div>
 
                 <div class="box-card card d-flex justify-content-center">
-                    <img src="/public/imgs/produtos/novos/uno.png" alt="" class="card-img-top">
+                    <img src="public/imgs/produtos/novos/uno.png" alt="" class="card-img-top">
                     <div class="card-body">
                         <h3 class="card-title">UNO jogo de cartas no mercy</h3>
                         <p class="card-text">6</p>

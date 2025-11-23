@@ -8,17 +8,8 @@ if (produtos) {
     var larguraVitrine = document.querySelector('.tela-produtos').clientWidth;
     var quantidadeClicks = 0;
 
-    /*
-    Só é necessário fazer 'produtos.style.transition = '1s all'' uma vez. 
-    */
     produtos.style.transition = '1s all';
-
-    /* 
-    Esse variável é usada quando um usuário mobile clica pra abrir o menu,
-    não estava sendo utilizada dentro da função menu(), realoquei ele para cá,
-    além disso, agr ela é 'var' assim, trocarBotao() tem acesso a ela, caso 'botaoMenu' estivesse dentro de
-    trocarBotao(), ele seria criada de novo e denovo.
-    */
+    
     var botaonMenu = document.getElementById('btnMenu');
 
     var vitrine;

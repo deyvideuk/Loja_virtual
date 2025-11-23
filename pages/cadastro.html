@@ -21,6 +21,10 @@
   <link rel="stylesheet" href="../css/index.css">
   <link rel="stylesheet" href="../css/cadastro.css">
   <script src="../js/index.js" defer></script>
+  <script src="../js/cadastro.js" defer>
+    carregarEstados();
+  </script>
+
   <title>Cadastro | ToyMania Loja Virtual</title>
 </head>
 
@@ -66,13 +70,13 @@
             <a onclick="menu()" href="../index.html">Inicio</a>
           </li>
           <li>
-            <a onclick="menu()" href="/pages/cadastrarProduto.html">Produtos</a>
+            <a onclick="menu()" href="./cadastrarProduto.html">Produtos</a>
           </li>
           <li>
-            <a onclick="menu()" href="/pages/sobre.html">Sobre</a>
+            <a onclick="menu()" href="./sobre.html">Sobre</a>
           </li>
           <li>
-            <a onclick="menu()" href="/pages/contato.html">Contato</a>
+            <a onclick="menu()" href="./contato.html">Contato</a>
           </li>
         </ul>
       </div>
@@ -83,7 +87,8 @@
   <section id="container-cadastro">
     <div class="container d-flex justify-content-center align-items-center">
       <div class="card p-5 shadow" style="max-width: 600px; width: 100%">
-        <form action="http://localhost:3000/api/usuarios" method="POST" id="form-cadastro" class="row g-3">
+
+        <form action="../php/cadastrar.php" method="POST" id="form-cadastro" class="row g-3">
           <div class="col-md-6">
             <label class="form-label">Nome completo</label>
             <input type="text" id="nomeUsuario" name="nomeUsuario" class="form-control" placeholder="Ex: Ana Souza" required>
@@ -160,7 +165,7 @@
             <p id="msg"></p>
           </div>
 
-          <button class="btn btn-primary w-100" id="btn-cadastrar" type="submit">Cadastrar</button>
+          <button class="btn btn-primary w-100" id="btn-cadastrar" type="submit" name="cadastrar">Cadastrar</button>
         </form>
 
       </div>
@@ -173,13 +178,6 @@
       <p><a href="#">Política de Privacidade</a> · <a href="#">Contato</a></p>
     </div>
   </footer>
-
-
-  <script src="../js/cadastro.js"></script>
-  <script>
-    carregarEstados();
-  </script>
-
 
 </body>
 

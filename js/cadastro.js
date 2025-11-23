@@ -1,4 +1,4 @@
-import conexao from './conexao';
+
 
 // mensagens de erro
 var msg = document.getElementById('msg');
@@ -139,15 +139,12 @@ function validarCPF(cpf) {
 // FUNÇÕES DE ERROS
 
 function mostrarErro(input, mensagem) {
-    const small = input.parentElement.querySelector(".error-message");
-    if (small) {
-        small.innerText = mensagem;
-        small.style.color = "red";
-    }
-    if (input.parentElement) {
-        input.parentElement.classList.add('error');
-    }
-    input.style.borderColor = "red";
+    let alerta = document.getElementById('msg');
+
+    // alerta.classList.remove('alert-warning');
+    alerta.classList.remove('alert-warning');
+    alerta.innerHTML = mensagem;
+    
 }
 
 function limparErro(input) {
@@ -230,69 +227,69 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Envio do formulário
-    if (form) {
-        form.addEventListener("submit", async (event) => {
-            event.preventDefault();
-            let valido = true;
+    // if (form) {
+    //     form.addEventListener("submit", async (event) => {
+    //         event.preventDefault();
+    //         let valido = true;
 
-            msg.innerHTML = ""; // limpa mensagens gerais
+    //         msg.innerHTML = ""; // limpa mensagens gerais
 
-            document.querySelectorAll("#form-cadastro input, #form-cadastro select")
-                .forEach(input => limparErro(input));
+    //         document.querySelectorAll("#form-cadastro input, #form-cadastro select")
+    //             .forEach(input => limparErro(input));
 
-            const campos = [
-                { input: document.getElementById("nomeUsuario"), validator: (val) => val.trim().length >= 6, msg: "Nome completo (mínimo 6 caracteres)." },
-                { input: document.getElementById("cpfUsuario"), validator: validarCPF, msg: "CPF inválido." },
-                { input: document.getElementById("emailUsuario"), validator: validarEmail, msg: "Email inválido." },
-                { input: document.getElementById("telefoneUsuario"), validator: validarTelefone, msg: "Telefone inválido." },
-                { input: document.getElementById("dataUsuario"), validator: validarDataNascimento, msg: "Data inválida (mínimo 18 anos)." },
-                { input: document.getElementById("numeroUsuario"), validator: validarNumero, msg: "Número inválido." },
-                { input: document.getElementById("senhaUsuario"), validator: validarSenha, msg: "Senha inválida." },
-                { input: document.getElementById("confirmarSenha"), validator: (val) => confirmarSenha(document.getElementById("senhaUsuario").value, val), msg: "As senhas não coincidem." },
-                { input: document.getElementById("complementoUsuario"), validator: (val) => val.trim() !== "", msg: "Complemento é obrigatório." },
-                { input: document.getElementById("cepUsuario"), validator: (val) => val.replace(/\D/g, '').length === 8, msg: "CEP inválido." },
-                { input: document.getElementById("enderecoUsuario"), validator: (val) => val.trim() !== "", msg: "Endereço obrigatório." },
-                { input: document.getElementById("bairroUsuario"), validator: (val) => val.trim() !== "", msg: "Bairro obrigatório." },
-                { input: document.getElementById("estadoUsuario"), validator: (val) => val.trim() !== "", msg: "Estado obrigatório." },
-                { input: document.getElementById("cidadeUsuario"), validator: (val) => val.trim() !== "", msg: "Cidade obrigatória." },
-            ];
+    //         const campos = [
+    //             { input: document.getElementById("nomeUsuario"), validator: (val) => val.trim().length >= 6, msg: "Nome completo (mínimo 6 caracteres)." },
+    //             { input: document.getElementById("cpfUsuario"), validator: validarCPF, msg: "CPF inválido." },
+    //             { input: document.getElementById("emailUsuario"), validator: validarEmail, msg: "Email inválido." },
+    //             { input: document.getElementById("telefoneUsuario"), validator: validarTelefone, msg: "Telefone inválido." },
+    //             { input: document.getElementById("dataUsuario"), validator: validarDataNascimento, msg: "Data inválida (mínimo 18 anos)." },
+    //             { input: document.getElementById("numeroUsuario"), validator: validarNumero, msg: "Número inválido." },
+    //             { input: document.getElementById("senhaUsuario"), validator: validarSenha, msg: "Senha inválida." },
+    //             { input: document.getElementById("confirmarSenha"), validator: (val) => confirmarSenha(document.getElementById("senhaUsuario").value, val), msg: "As senhas não coincidem." },
+    //             { input: document.getElementById("complementoUsuario"), validator: (val) => val.trim() !== "", msg: "Complemento é obrigatório." },
+    //             { input: document.getElementById("cepUsuario"), validator: (val) => val.replace(/\D/g, '').length === 8, msg: "CEP inválido." },
+    //             { input: document.getElementById("enderecoUsuario"), validator: (val) => val.trim() !== "", msg: "Endereço obrigatório." },
+    //             { input: document.getElementById("bairroUsuario"), validator: (val) => val.trim() !== "", msg: "Bairro obrigatório." },
+    //             { input: document.getElementById("estadoUsuario"), validator: (val) => val.trim() !== "", msg: "Estado obrigatório." },
+    //             { input: document.getElementById("cidadeUsuario"), validator: (val) => val.trim() !== "", msg: "Cidade obrigatória." },
+    //         ];
 
-            campos.forEach(campo => {
-                if (campo.input && (!campo.input.value.trim() || !campo.validator(campo.input.value))) {
-                    mostrarErro(campo.input, campo.msg);
-                    valido = false;
-                }
-            });
+    //         campos.forEach(campo => {
+    //             if (campo.input && (!campo.input.value.trim() || !campo.validator(campo.input.value))) {
+    //                 mostrarErro(campo.input, campo.msg);
+    //                 valido = false;
+    //             }
+    //         });
 
-            if (!valido) {
-                msg.innerHTML = "<span style='color:red;'>⚠️ Corrija os erros antes de enviar.</span>";
-                return;
-            }
+    //         if (!valido) {
+    //             msg.innerHTML = "<span style='color:red;'>⚠️ Corrija os erros antes de enviar.</span>";
+    //             return;
+    //         }
 
-            const dados = Object.fromEntries(new FormData(form));
+    //         const dados = Object.fromEntries(new FormData(form));
 
-            try {
-                const resposta = await fetch("http://localhost:3000/api/usuarios", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(dados),
-                });
+    //         try {
+    //             const resposta = await fetch("http://localhost:3000/api/usuarios", {
+    //                 method: "POST",
+    //                 headers: { "Content-Type": "application/json" },
+    //                 body: JSON.stringify(dados),
+    //             });
 
-                const resultado = await resposta.json();
+    //             const resultado = await resposta.json();
 
-                if (!resposta.ok) {
-                    // Mostra mensagem de erro vinda do backend
-                    msg.innerHTML = `<span style='color:red;'>${resultado.erro || "Erro ao cadastrar usuário!"}</span>`;
-                    return;
-                }
+    //             if (!resposta.ok) {
+    //                 // Mostra mensagem de erro vinda do backend
+    //                 msg.innerHTML = `<span style='color:red;'>${resultado.erro || "Erro ao cadastrar usuário!"}</span>`;
+    //                 return;
+    //             }
 
-                msg.innerHTML = "<span style='color:green;'>Cadastro realizado com sucesso!</span>";
-                form.reset();
+    //             msg.innerHTML = "<span style='color:green;'>Cadastro realizado com sucesso!</span>";
+    //             form.reset();
 
-            } catch (erro) {
-                console.error("Erro no envio:", erro);
-                msg.innerHTML = "<span style='color:red;'>Erro de conexão com o servidor. Tente novamente.</span>";
-            }
-        });
-    }
+    //         } catch (erro) {
+    //             console.error("Erro no envio:", erro);
+    //             msg.innerHTML = "<span style='color:red;'>Erro de conexão com o servidor. Tente novamente.</span>";
+    //         }
+    //     });
+    // }
 });
