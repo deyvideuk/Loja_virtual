@@ -79,21 +79,29 @@
         <img id="btnMenu" src="../public/imgs/icons/arrow-right.png" alt="">
       </button>
       <div class="areaLista">
-        <ul id="listaMenu">
-          <li>
-            <a onclick="menu()" href="../index.php">Inicio</a>
-          </li>
-          <li>
-            <a onclick="menu()" href="./cadastrarProduto.php">Produtos</a>
-          </li>
-          <li>
-            <a onclick="menu()" href="./sobre.php">Sobre</a>
-          </li>
-          <li>
-            <a onclick="menu()" href="./contato.php">Contato</a>
-          </li>
-        </ul>
-      </div>
+                <ul id="listaMenu">
+                    <li>
+                        <a onclick="menu()" href="../index.php">Inicio</a>
+                    </li>
+
+                    <?php if(isset($_SESSION['cargoUsuario']) && ($_SESSION['cargoUsuario']) == 'admin'): ?>     
+                        <li>
+                            <a onclick="menu()" href="cadastrarProduto.php">Cadastrar Produtos</a>
+                        </li>
+                    <?php else : ?>
+                        <li>
+                            <a onclick="menu()" href="cadastrarProduto.php">Lista de Produtos</a>
+                        </li>
+                    <?php endif;?>
+
+                    <li>
+                        <a onclick="menu()" href="sobre.php">Sobre</a>
+                    </li>
+                    <li>
+                        <a onclick="menu()" href="contato.php">Contato</a>
+                    </li>
+                </ul>
+            </div>
     </nav>
   </header>
   <!-- fim, area do header -->

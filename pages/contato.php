@@ -1,6 +1,8 @@
 <?php
     include_once '../php/conexao.php';
     include_once '../php/webhooks.php';
+    include_once '../php/verificarLogin.php';
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -29,7 +31,7 @@
 </head>
 
 <body>
-    <!-- area do header -->
+<!-- area do header -->
     <header id="header">
         <div id="news">
             <p>🎉 Promoção Relâmpago na ToyMania! garante até 50% OFF 🧸</p>
@@ -50,11 +52,18 @@
             </div>
             <div class="box">
                 <div class="item">
-                    <?php if(!isset($_SESSION['idUsuario'])) : ?>
-                        <a href="login.php#container-cadastro" class="btn-red shadow">Entrar</a>
+                    <?php if(isset($_SESSION['idUsuario'])) : ?>
+                    <a href="../php/loggout.php" class="btn-red shadow">sair</a>
                     <?php else :?>
-                        <a href="../php/loggout.php" class="btn-red shadow">sair</a>
+                    
+                    <a href="login.php#container-cadastro" class="btn-red shadow">Entrar</a>
                     <?php endif;?>
+                
+                <?php if(isset($_SESSION['idUsuario'])) :?>
+                    <div class="nome-usuario">
+                        <p>Bem vindo: <?php echo $_SESSION['nomeUsuario']?></p>
+                    </div>
+                <?php endif;?>
                 </div>
                 <div class="item">
                     <button type="button">
@@ -73,19 +82,27 @@
             <button type="button" class="btnClose" onclick="menu()">
                 <img id="btnMenu" src="/public/imgs/icons/arrow-right.png" alt="">
             </button>
-            <div class="areaLista">
+             <div class="areaLista">
                 <ul id="listaMenu">
                     <li>
                         <a onclick="menu()" href="../index.php">Inicio</a>
                     </li>
+
+                    <?php if(isset($_SESSION['cargoUsuario']) && ($_SESSION['cargoUsuario']) == 'admin'): ?>     
+                        <li>
+                            <a onclick="menu()" href="cadastrarProduto.php">Cadastrar Produtos</a>
+                        </li>
+                    <?php else : ?>
+                        <li>
+                            <a onclick="menu()" href="cadastrarProduto.php">Lista de Produtos</a>
+                        </li>
+                    <?php endif;?>
+
                     <li>
-                        <a onclick="menu()" href="./cadastrarProduto.php">Produtos</a>
+                        <a onclick="menu()" href="sobre.php">Sobre</a>
                     </li>
                     <li>
-                        <a onclick="menu()" href="./sobre.php">Sobre</a>
-                    </li>
-                    <li>
-                        <a onclick="menu()" href="./contato.php">Contato</a>
+                        <a onclick="menu()" href="contato.php">Contato</a>
                     </li>
                 </ul>
             </div>
@@ -93,6 +110,7 @@
     </header>
     <!-- fim, area do header -->
 
+    
     <!-- area Sobre-->
     
     <!-- fim, area Sobre-->

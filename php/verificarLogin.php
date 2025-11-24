@@ -34,6 +34,7 @@
                 $_SESSION['bairroUsuario'] = $usuario['bairroUsuario'];
                 $_SESSION['estadoUsuario'] = $usuario['estadoUsuario'];
                 $_SESSION['cidadeUsuario'] = $usuario['cidadeUsuario'];  
+                $_SESSION['cargoUsuario'] = $usuario['cargoUsuario'];  
 
                 header("Location: ../index.php?login=200");
 

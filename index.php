@@ -85,9 +85,17 @@
                     <li>
                         <a onclick="menu()" href="./index.php">Inicio</a>
                     </li>
-                    <li>
-                        <a onclick="menu()" href="./pages/cadastrarProduto.php">Produtos</a>
-                    </li>
+
+                    <?php if(isset($_SESSION['cargoUsuario']) && ($_SESSION['cargoUsuario']) == 'admin'): ?>     
+                        <li>
+                            <a onclick="menu()" href="./pages/cadastrarProduto.php">Cadastrar Produtos</a>
+                        </li>
+                    <?php else : ?>
+                        <li>
+                            <a onclick="menu()" href="./pages/cadastrarProduto.php">Lista de Produtos</a>
+                        </li>
+                    <?php endif;?>
+
                     <li>
                         <a onclick="menu()" href="./pages/sobre.php">Sobre</a>
                     </li>
