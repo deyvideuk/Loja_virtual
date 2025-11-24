@@ -90,7 +90,7 @@
                 <div class="card p-5 shadow" style="max-width: 600px; width: 100%">
                     <h2 class="text-center mb-4 ">Login</h2>
 
-                    <form id="form-cadastro" class="d-flex gap-4 flex-column">
+                    <form id="form-cadastro" class="d-flex gap-4 flex-column" action="../php/verificarLogin.php" method="post">
 
                         <div class="w-100">
                             <label for="email" class="form-label">E-mail</label>
@@ -104,7 +104,7 @@
                                 required />
                         </div>
 
-                        <button class="btn btn-primary w-75 m-auto" id="btn-cadastrar">Cadastrar</button>
+                        <button class="btn btn-primary w-75 m-auto" id="btn-cadastrar" name="login">Entrar</button>
                     </form>
 
                     <br>

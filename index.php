@@ -1,6 +1,10 @@
 <?php
     include_once './php/conexao.php';
     include_once './php/webhooks.php';
+
+    if(!isset($_SESSION)){
+        session_start();
+    }
 ?>
 
 <!DOCTYPE html>
@@ -46,7 +50,7 @@
                 </form>
             </div>
             <div class="box logo">
-                <a id="logo-header" href="../index.html">
+                <a id="logo-header" href="./index.php">
                     <img src="public/imgs/logo/logotipo-toymania-semfundo.png" alt="logos">
                 </a>
             </div>
@@ -69,10 +73,10 @@
             <div class="areaLista">
                 <ul id="listaMenu">
                     <li>
-                        <a onclick="menu()" href="index.html">Inicio</a>
+                        <a onclick="menu()" href="./index.php">Inicio</a>
                     </li>
                     <li>
-                        <a onclick="menu()" href="./pages/cadastrarProduto.html">Produtos</a>
+                        <a onclick="menu()" href="./pages/cadastrarProduto.php">Produtos</a>
                     </li>
                     <li>
                         <a onclick="menu()" href="./pages/sobre.html">Sobre</a>

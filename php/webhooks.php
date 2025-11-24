@@ -20,4 +20,24 @@
         }
     // cadastro
 
+    // login
+    if(isset($_GET['login']) && ($_GET['login'] == '401')){
+        $html = '
+                <div id="alert" class="alert alert-danger" style="display:flex;">
+                    <p>Email ou Senha incorretas!</p>
+                </div>
+            ';
+            echo $html;
+    }
+
+    if(isset($_GET['login']) && ($_GET['login'] == '200')){
+        $html = '
+                <div id="alert" class="alert alert-info" style="display:flex;">
+                    <p>Login efetuado com sucesso!</p>
+                </div>
+            ';
+            echo $html;
+    }
+    // login
+
 ?>

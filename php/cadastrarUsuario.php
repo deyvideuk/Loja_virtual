@@ -35,14 +35,19 @@
         echo "não existe";
         $stmt->close();
 
+        $senhaProtegida = password_hash($_SESSION['senhaUsuario'], PASSWORD_DEFAULT);
+        
+
         $stmt = $mysqli->prepare("INSERT INTO usuarios (nomeUsuario, cpfUsuario, emailUsuario, telefoneUsuario, dataUsuario, cepUsuario, numeroUsuario, enderecoUsuario, complementoUsuario, bairroUsuario, estadoUsuario, cidadeUsuario, senhaUsuario) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)");
-        $stmt->bind_param("sssssssssssss", $_SESSION['nomeUsuario'], $_SESSION['cpfUsuario'], $_SESSION['emailUsuario'], $_SESSION['telefoneUsuario'], $_SESSION['dataUsuario'], $_SESSION['cepUsuario'], $_SESSION['numeroUsuario'], $_SESSION['enderecoUsuario'], $_SESSION['complementoUsuario'], $_SESSION['bairroUsuario'], $_SESSION['estadoUsuario'], $_SESSION['cidadeUsuario'], $_SESSION['senhaUsuario']);
+        $stmt->bind_param("sssssssssssss", $_SESSION['nomeUsuario'], $_SESSION['cpfUsuario'], $_SESSION['emailUsuario'], $_SESSION['telefoneUsuario'], $_SESSION['dataUsuario'], $_SESSION['cepUsuario'], $_SESSION['numeroUsuario'], $_SESSION['enderecoUsuario'], $_SESSION['complementoUsuario'], $_SESSION['bairroUsuario'], $_SESSION['estadoUsuario'], $_SESSION['cidadeUsuario'], $senhaProtegida);
 
         if($stmt->execute()){
             $stmt->close();
+            session_destroy();
             header("Location: ../pages/login.php?cadastro=200#container-cadastro");
         }else{
             $stmt->close();
+            session_destroy();
             echo "Falha ao cadastrar";
         }
     }
