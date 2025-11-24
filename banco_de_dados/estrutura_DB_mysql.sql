@@ -16,6 +16,26 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `produtos`
+--
+
+DROP TABLE IF EXISTS `produtos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `produtos` (
+  `idProduto` int NOT NULL AUTO_INCREMENT,
+  `idUsuario` int NOT NULL,
+  `nomeProduto` varchar(45) NOT NULL,
+  `precoProduto` double NOT NULL,
+  `qtdProduto` int NOT NULL,
+  `descricaoProduto` text NOT NULL,
+  PRIMARY KEY (`idProduto`),
+  KEY `fk_id_usuario` (`idUsuario`),
+  CONSTRAINT `fk_id_usuario` FOREIGN KEY (`idUsuario`) REFERENCES `usuarios` (`idUsuario`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `usuarios`
 --
 
@@ -37,8 +57,9 @@ CREATE TABLE `usuarios` (
   `estadoUsuario` varchar(20) NOT NULL,
   `cidadeUsuario` varchar(20) NOT NULL,
   `senhaUsuario` varchar(255) NOT NULL,
+  `cargoUsuario` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idUsuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -50,4 +71,4 @@ CREATE TABLE `usuarios` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-11-23 22:27:00
+-- Dump completed on 2025-11-24 18:03:22
