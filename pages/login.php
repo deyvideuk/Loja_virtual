@@ -1,4 +1,5 @@
 <?php
+    include_once '../php/conexao.php';
     include_once '../php/webhooks.php';
 ?>
 
@@ -50,7 +51,11 @@
             </div>
             <div class="box">
                 <div class="item">
-                    <a href="./login.php#container-cadastro" class="btn-red shadow">Entrar</a>
+                    <?php if(!isset($_SESSION['id'])) : ?>
+                        <a href="login.php#container-cadastro" class="btn-red shadow">Entrar</a>
+                    <?php else :?>
+                        <a href="../php/loggout.php" class="btn-red shadow">sair</a>
+                    <?php endif;?>
                 </div>
                 <div class="item">
                     <button type="button">
@@ -58,6 +63,11 @@
                         <img src="../public/imgs/icons/carrinho.png" alt="">
                     </button>
                 </div>
+                <?php if(isset($_SESSION['id'])) :?>
+                    <div class="nome-usuario">
+                        <p>Bem vindo: <?php echo $_SESSION['nomeUsuario']?></p>
+                    </div>
+                <?php endif;?>
             </div>
         </div>
         <nav id="menu">
@@ -73,10 +83,10 @@
                         <a onclick="menu()" href="./cadastrarProduto.php">Produtos</a>
                     </li>
                     <li>
-                        <a onclick="menu()" href="./sobre.html">Sobre</a>
+                        <a onclick="menu()" href="./sobre.php">Sobre</a>
                     </li>
                     <li>
-                        <a onclick="menu()" href="./contato.html">Contato</a>
+                        <a onclick="menu()" href="./contato.php">Contato</a>
                     </li>
                 </ul>
             </div>
@@ -90,7 +100,7 @@
                 <div class="card p-5 shadow" style="max-width: 600px; width: 100%">
                     <h2 class="text-center mb-4 ">Login</h2>
 
-                    <form id="form-cadastro" class="d-flex gap-4 flex-column">
+                    <form id="form-cadastro" class="d-flex gap-4 flex-column" action="../php/verificarLogin.php" method="post">
 
                         <div class="w-100">
                             <label for="email" class="form-label">E-mail</label>
@@ -104,7 +114,7 @@
                                 required />
                         </div>
 
-                        <button class="btn btn-primary w-75 m-auto" id="btn-cadastrar">Cadastrar</button>
+                        <button class="btn btn-primary w-75 m-auto" id="btn-cadastrar" name="login">Entrar</button>
                     </form>
 
                     <br>

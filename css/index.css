@@ -125,6 +125,14 @@ a {
     animation: vibrar 0.3s linear 3;
 }
 
+.nome-usuario{
+    /* border: 1px solid red; */
+    display: flex;
+    position: absolute;
+    right: 0;
+    bottom: 90px;
+}
+
 /* Estilização do header */
 
 #header {
@@ -171,6 +179,7 @@ a {
     padding: 50px 0;
     max-width: 1500px;
     margin: 0 auto;
+    position: relative;
 }
 
 

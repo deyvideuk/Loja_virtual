@@ -1,3 +1,8 @@
+<?php
+    include_once '../php/conexao.php';
+    include_once '../php/verificarLogin.php';
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -46,7 +51,11 @@
             </div>
             <div class="box">
                 <div class="item">
-                    <a href="login.php#container-cadastro" class="btn-red shadow">Entrar</a>
+                    <?php if(!isset($_SESSION['id'])) : ?>
+                        <a href="login.php#container-cadastro" class="btn-red shadow">Entrar</a>
+                    <?php else :?>
+                        <a href="../php/loggout.php" class="btn-red shadow">sair</a>
+                    <?php endif;?>
                 </div>
                 <div class="item">
                     <button type="button">
@@ -54,6 +63,11 @@
                         <img src="../public/imgs/icons/carrinho.png" alt="">
                     </button>
                 </div>
+                <?php if(isset($_SESSION['id'])) :?>
+                    <div class="nome-usuario">
+                        <p>Bem vindo: <?php echo $_SESSION['nomeUsuario']?></p>
+                    </div>
+                <?php endif;?>
             </div>
         </div>
         <nav id="menu">
@@ -69,10 +83,10 @@
                         <a onclick="menu()" href="./cadastrarProduto.php">Produtos</a>
                     </li>
                     <li>
-                        <a onclick="menu()" href="./sobre.html">Sobre</a>
+                        <a onclick="menu()" href="./sobre.php">Sobre</a>
                     </li>
                     <li>
-                        <a onclick="menu()" href="./contato.html">Contato</a>
+                        <a onclick="menu()" href="./contato.php">Contato</a>
                     </li>
                 </ul>
             </div>
@@ -80,47 +94,57 @@
     </header>
     <!-- fim, area do header -->
 
-    <section id="container-cadastro">
-        <div class="container d-flex justify-content-center align-items-center">
-            <div class="card p-5 shadow" style="max-width: 800px; width: 100%">
-                <form id="form-cadastro" class="row g-2">
-                    <h2 class="text-center mb-4">Cadastrar Produto</h2>
+    <?php if(isset($_SESSION['id'])) : ?>
+        <section id="container-cadastro">
+            <div class="container d-flex justify-content-center align-items-center">
+                <div class="card p-5 shadow" style="max-width: 800px; width: 100%">
+                    <form id="form-cadastro" class="row g-2">
+                        <h2 class="text-center mb-4">Cadastrar Produto</h2>
 
-                    <div class="col-md-4">
-                        <label class="form-label">Nome Do Produto</label>
-                        <input type="text" id="nomeProduto" class="form-control" placeholder="Ex: Carrinho" required>
-                        <small class="error-message"></small>
-                    </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Nome Do Produto</label>
+                            <input type="text" id="nomeProduto" class="form-control" placeholder="Ex: Carrinho" required>
+                            <small class="error-message"></small>
+                        </div>
 
-                    <div class="col-md-4">
-                        <label for="preco" class="form-label">Preço</label>
-                        <input type="number" id="precoProduto" name="preco" class="form-control"
-                            placeholder="Ex: R$ 25,00" required />
-                        <small class="error-message"></small>
-                    </div>
+                        <div class="col-md-4">
+                            <label for="preco" class="form-label">Preço</label>
+                            <input type="number" id="precoProduto" name="preco" class="form-control"
+                                placeholder="Ex: R$ 25,00" required />
+                            <small class="error-message"></small>
+                        </div>
 
-                    <div class="col-md-4">
-                        <label for="quantidade" class="form-label">Quantidade Em Estoque</label>
-                        <input type="number" id="quantidadeProduto" name="quantidade" class="form-control"
-                            placeholder="Ex: 100" required />
-                        <small class="error-message"></small>
-                    </div>
+                        <div class="col-md-4">
+                            <label for="quantidade" class="form-label">Quantidade Em Estoque</label>
+                            <input type="number" id="quantidadeProduto" name="quantidade" class="form-control"
+                                placeholder="Ex: 100" required />
+                            <small class="error-message"></small>
+                        </div>
 
-                    <!-- Descrição ocupando toda a largura -->
-                    <div class="col-12">
-                        <label for="descricao" class="form-label" id="descricao-label">Descrição Do Produto</label>
-                        <textarea type="text" id="descricaoProduto" class="form-control" name="descricao"
-                            placeholder="Descrição do produto aqui..." required></textarea>
-                        <small class="error-message"></small>
-                    </div>
+                        <!-- Descrição ocupando toda a largura -->
+                        <div class="col-12">
+                            <label for="descricao" class="form-label" id="descricao-label">Descrição Do Produto</label>
+                            <textarea type="text" id="descricaoProduto" class="form-control" name="descricao"
+                                placeholder="Descrição do produto aqui..." required></textarea>
+                            <small class="error-message"></small>
+                        </div>
 
-                    <button class="btn btn-primary w-100" id="btn-cadastrar" type="submit">Cadastrar Produto</button>
-                    <button class="btn btn-secondary w-100" id="btn-cancelar" type="reset">Cancelar</button>
+                        <button class="btn btn-primary w-100" id="btn-cadastrar" type="submit">Cadastrar Produto</button>
+                        <button class="btn btn-secondary w-100" id="btn-cancelar" type="reset">Cancelar</button>
 
-                </form>
+                    </form>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    <?php else: ?>
+        <section id="container-cadastro">
+            <div class="container d-flex justify-content-center align-items-center">
+                <div class="card p-5 shadow justify-content-center align-items-center height" style="max-width: 800px; width: 100%">
+                    Efetue Login para acessar!
+                </div>
+            </div>
+        </section>
+    <?php endif;?>
 
     <footer class="footer">
         <div class="footer-container">

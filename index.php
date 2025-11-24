@@ -1,6 +1,10 @@
 <?php
     include_once './php/conexao.php';
     include_once './php/webhooks.php';
+
+    if(!isset($_SESSION)){
+        session_start();
+    }
 ?>
 
 <!DOCTYPE html>
@@ -46,13 +50,17 @@
                 </form>
             </div>
             <div class="box logo">
-                <a id="logo-header" href="../index.html">
+                <a id="logo-header" href="./index.php">
                     <img src="public/imgs/logo/logotipo-toymania-semfundo.png" alt="logos">
                 </a>
             </div>
             <div class="box">
                 <div class="item">
-                    <a href="pages/login.php#container-cadastro" class="btn-red shadow">Entrar</a>
+                    <?php if(!isset($_SESSION['id'])) : ?>
+                        <a href="./pages/login.php#container-cadastro" class="btn-red shadow">Entrar</a>
+                    <?php else :?>
+                        <a href="./php/loggout.php" class="btn-red shadow">sair</a>
+                    <?php endif;?>
                 </div>
                 <div class="item">
                     <button type="button">
@@ -60,6 +68,11 @@
                         <img src="public/imgs/icons/carrinho.png" alt="">
                     </button>
                 </div>
+                <?php if(isset($_SESSION['id'])) :?>
+                    <div class="nome-usuario">
+                        <p>Bem vindo: <?php echo $_SESSION['nomeUsuario']?></p>
+                    </div>
+                <?php endif;?>
             </div>
         </div>
         <nav id="menu">
@@ -69,16 +82,16 @@
             <div class="areaLista">
                 <ul id="listaMenu">
                     <li>
-                        <a onclick="menu()" href="index.html">Inicio</a>
+                        <a onclick="menu()" href="./index.php">Inicio</a>
                     </li>
                     <li>
-                        <a onclick="menu()" href="./pages/cadastrarProduto.html">Produtos</a>
+                        <a onclick="menu()" href="./pages/cadastrarProduto.php">Produtos</a>
                     </li>
                     <li>
-                        <a onclick="menu()" href="./pages/sobre.html">Sobre</a>
+                        <a onclick="menu()" href="./pages/sobre.php">Sobre</a>
                     </li>
                     <li>
-                        <a onclick="menu()" href="./pages/contato.html">Contato</a>
+                        <a onclick="menu()" href="./pages/contato.php">Contato</a>
                     </li>
                 </ul>
             </div>
