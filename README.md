@@ -28,6 +28,8 @@ JavaScript — interatividade e manipulação do DOM
 
 Bootstrap 5 — layout responsivo e componentes prontos
 
+PHP - API de conexão ao banco de dados
+
 Figma — prototipação de interface (alta fidelidade)
 
 🧩 3. Estrutura do Projeto
