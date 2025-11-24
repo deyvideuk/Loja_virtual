@@ -1,5 +1,5 @@
 <?php
-    include_once './conexao.php';
+    include_once 'conexao.php';
 
     if(!isset($_SESSION)){
         session_start();

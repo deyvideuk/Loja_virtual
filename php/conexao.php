@@ -1,14 +1,18 @@
 <?php
 
-$hostname = "localhost";
-$banco = "toymania";
-$usuario = "root";
-$senha = "Dwdbrasiloficial12!";
+    if(!isset($_SESSION)){
+            session_start();
+        }
 
-$mysqli = new mysqli($hostname, $usuario, $senha, $banco);
+    $hostname = "localhost";
+    $banco = "toymania";
+    $usuario = "root";
+    $senha = "Dwdbrasiloficial12!";
 
-if($mysqli->connect_error){
-    echo "Falha ao conectar: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
-}
+    $mysqli = new mysqli($hostname, $usuario, $senha, $banco);
+
+    if($mysqli->connect_error){
+        echo "Falha ao conectar: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+    }
 
 ?>

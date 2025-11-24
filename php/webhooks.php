@@ -40,4 +40,15 @@
     }
     // login
 
+    // loggout
+    if(isset($_GET['loggout']) && ($_GET['loggout']) == '200'){
+        $html = '
+                <div id="alert" class="alert alert-info" style="display:flex;">
+                    <p>Sessão finalizada com sucesso!</p>
+                </div>
+            ';
+            echo $html;
+    }
+    // loggout
+
 ?>
