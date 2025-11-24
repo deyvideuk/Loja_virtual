@@ -46,7 +46,7 @@
             </div>
             <div class="box">
                 <div class="item">
-                    <a href="login.html#container-cadastro" class="btn-red shadow">Entrar</a>
+                    <a href="login.php#container-cadastro" class="btn-red shadow">Entrar</a>
                 </div>
                 <div class="item">
                     <button type="button">
@@ -63,10 +63,10 @@
             <div class="areaLista">
                 <ul id="listaMenu">
                     <li>
-                        <a onclick="menu()" href="../index.html">Inicio</a>
+                        <a onclick="menu()" href="../index.php">Inicio</a>
                     </li>
                     <li>
-                        <a onclick="menu()" href="./cadastrarProduto.html">Produtos</a>
+                        <a onclick="menu()" href="./cadastrarProduto.php">Produtos</a>
                     </li>
                     <li>
                         <a onclick="menu()" href="./sobre.html">Sobre</a>

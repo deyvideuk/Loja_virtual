@@ -148,3 +148,12 @@ function trocarBotao(count) {
         botaonMenu.src = '/public/imgs/icons/arrow-right.png';
     }
 }
+
+document.addEventListener("DOMContentLoaded", function(){
+    let alert = document.getElementById('alert');
+    if(alert){
+        setInterval(()=>{
+            alert.style.display = 'none';
+        }, 5000);
+    }
+});

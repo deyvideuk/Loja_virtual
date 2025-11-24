@@ -1,4 +1,7 @@
-
+<?php
+    include_once './php/conexao.php';
+    include_once './php/webhooks.php';
+?>
 
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -49,7 +52,7 @@
             </div>
             <div class="box">
                 <div class="item">
-                    <a href="pages/login.html#container-cadastro" class="btn-red shadow">Entrar</a>
+                    <a href="pages/login.php#container-cadastro" class="btn-red shadow">Entrar</a>
                 </div>
                 <div class="item">
                     <button type="button">
