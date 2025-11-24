@@ -114,6 +114,8 @@
     </section>
     <!-- fim, area Sobre-->
 
+    <div class="borda branco"></div>
+
     <!-- area do footer -->
     <footer class="footer w-100">
         <div class="footer-container">

@@ -6,7 +6,7 @@
     justify-content: center;
     align-items: center;
     padding: 50px 10px;
-    background-color: var(--cor-verde);
+    background-color: var(--cor-azul);
 }
 
 .titulo{
@@ -32,7 +32,7 @@
 }
 
 .texto p{
-    text-shadow: 1px 1px 10px black;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.527);
 }
 
 #header{

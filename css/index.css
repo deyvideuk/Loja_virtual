@@ -110,6 +110,16 @@ a {
     background-color: var(--cor-azul);
 }
 
+.amarelo {
+    color: var(--cor-amarelo);
+    background-color: var(--cor-amarelo);
+}
+
+.branco {
+    color: white;
+    background-color: white;
+}
+
 #alert{
     display: none;
     flex-direction: column;
