@@ -423,6 +423,18 @@ basicamente ele tira todos aqueles efeitos de link do a.
 
 /* Estilização da area de produtos1 */
 
+.sem-produtos{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.sem-produtos h2{
+    text-align:center;
+}
+
 #area-produtos {
     /* border: 1px solid red; */
     display: flex;
@@ -446,6 +458,7 @@ basicamente ele tira todos aqueles efeitos de link do a.
     z-index: 2;
     overflow-x: hidden;
     scroll-behavior: smooth;
+    gap: 50px;
 }
 
 .btn-next,

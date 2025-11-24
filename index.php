@@ -1,6 +1,8 @@
 <?php
     include_once './php/conexao.php';
     include_once './php/webhooks.php';
+    include_once './php/pegarProdutos.php';
+    include_once './php/verificarLogin.php';
 
     if(!isset($_SESSION)){
         session_start();
@@ -30,7 +32,6 @@
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/index.css">
     <script src="js/index.js" defer></script>
-    <script src="js/teste.js"></script>
     <title>ToyMania | Loja Virtual</title>
 </head>
 
@@ -56,7 +57,7 @@
             </div>
             <div class="box">
                 <div class="item">
-                    <?php if(!isset($_SESSION['id'])) : ?>
+                    <?php if(!isset($_SESSION['idUsuario'])) : ?>
                         <a href="./pages/login.php#container-cadastro" class="btn-red shadow">Entrar</a>
                     <?php else :?>
                         <a href="./php/loggout.php" class="btn-red shadow">sair</a>
@@ -68,7 +69,7 @@
                         <img src="public/imgs/icons/carrinho.png" alt="">
                     </button>
                 </div>
-                <?php if(isset($_SESSION['id'])) :?>
+                <?php if(isset($_SESSION['idUsuario'])) :?>
                     <div class="nome-usuario">
                         <p>Bem vindo: <?php echo $_SESSION['nomeUsuario']?></p>
                     </div>
@@ -149,73 +150,37 @@
     <!-- area de produtos-->
     <section id="area-produtos">
         <h2>Novos Produtos</h2>
+        <?php if($resultadoProdutos->num_rows > 0) :?>
+            <div class="tela-produtos">
+                
+                <button type="button" class="btn-next" onclick="next()">&gt;</button>
+                <button type="button" class="btn-prev" onclick="prev()">&lt;</button>
 
-        <div class="tela-produtos">
-            <button type="button" class="btn-next" onclick="next()">&gt;</button>
-            <button type="button" class="btn-prev" onclick="prev()">&lt;</button>
+                <?php while($dados_produtos = mysqli_fetch_assoc($resultadoProdutos)) :?>
+                    <div id="produtos" class="produtos">
+                        <div class="box-card card d-flex justify-content-center">
+                            <img src="public/imgs/produtos/novos/imgNone.jpeg" alt="" class="card-img-top">
+                            <div class="card-body">
+                                <h4 class="card-title"><?php echo $dados_produtos['nomeProduto']?></h4>
+                                <h6 class="card-text">R$: <?php echo $dados_produtos['precoProduto']?> Reais</h6>
+                                <p class="card-text"><?php echo $dados_produtos['descricaoProduto']?> Reais</p>
+                                <h6 class="card-text">Disponível: <?php echo $dados_produtos['qtdProduto']?> Unidades.</h6>
+                                <br>
+                                <a href="#" class="btn btn-primary">Adicionar ao Carrinho</a>
+                            </div>
+                        </div>
+                    </div>
+                <?php endwhile;?>
+            </div>
+        <?php else :?>
+            <div class="tela-produtos">
 
-            <div id="produtos" class="produtos">
-                <div class="box-card card d-flex justify-content-center">
-                    <img src="public/imgs/produtos/novos/uno.png" alt="" class="card-img-top">
-                    <div class="card-body">
-                        <h3 class="card-title">UNO jogo de cartas no mercy</h3>
-                        <p class="card-text">1</p>
-                        <p class="card-text">valor</p>
-                        <a href="#" class="btn btn-primary">Adicionar ao Carrinho</a>
-                    </div>
-                </div>
-                <div class="box-card card d-flex justify-content-center">
-                    <img src="public/imgs/produtos/novos/uno.png" alt="" class="card-img-top">
-                    <div class="card-body">
-                        <h3 class="card-title">UNO jogo de cartas no mercy</h3>
-                        <p class="card-text">2</p>
-                        <p class="card-text">valor</p>
-                        <a href="#" class="btn btn-primary">Adicionar ao Carrinho</a>
-                    </div>
-                </div>
-
-                <div class="box-card card d-flex justify-content-center">
-                    <img src="public/imgs/produtos/novos/uno.png" alt="" class="card-img-top">
-                    <div class="card-body">
-                        <h3 class="card-title">UNO jogo de cartas no mercy</h3>
-                        <p class="card-text">3</p>
-                        <p class="card-text">valor</p>
-                        <a href="#" class="btn btn-primary">Adicionar ao Carrinho</a>
-                    </div>
-                </div>
-
-                <div class="box-card card d-flex justify-content-center">
-                    <img src="public/imgs/produtos/novos/uno.png" alt="" class="card-img-top">
-                    <div class="card-body">
-                        <h3 class="card-title">UNO jogo de cartas no mercy</h3>
-                        <p class="card-text">4</p>
-                        <p class="card-text">valor</p>
-                        <a href="#" class="btn btn-primary">Adicionar ao Carrinho</a>
-                    </div>
-                </div>
-
-                <div class="box-card card d-flex justify-content-center">
-                    <img src="public/imgs/produtos/novos/uno.png" alt="" class="card-img-top">
-                    <div class="card-body">
-                        <h3 class="card-title">UNO jogo de cartas no mercy</h3>
-                        <p class="card-text">5</p>
-                        <p class="card-text">valor</p>
-                        <a href="#" class="btn btn-primary">Adicionar ao Carrinho</a>
-                    </div>
-                </div>
-
-                <div class="box-card card d-flex justify-content-center">
-                    <img src="public/imgs/produtos/novos/uno.png" alt="" class="card-img-top">
-                    <div class="card-body">
-                        <h3 class="card-title">UNO jogo de cartas no mercy</h3>
-                        <p class="card-text">6</p>
-                        <p class="card-text">valor</p>
-                        <a href="#" class="btn btn-primary">Adicionar ao Carrinho</a>
-                    </div>
+                <div class="sem-produtos">
+                    <h2>Não há produtos cadastrados para anúncio!</h2>
                 </div>
 
             </div>
-        </div>
+        <?php endif;?>
     </section>
     <!-- fim, area de produtos-->
 

@@ -27,7 +27,6 @@
     <link rel="stylesheet" href="../css/index.css">
     <link rel="stylesheet" href="../css/sobre.css">
     <script src="../js/index.js" defer></script>
-    <script src="../js/teste.js"></script>
     <title>Sobre | ToyMania Loja Virtual</title>
 </head>
 
@@ -53,7 +52,7 @@
             </div>
             <div class="box">
                 <div class="item">
-                    <?php if(!isset($_SESSION['id'])) : ?>
+                    <?php if(!isset($_SESSION['idUsuario'])) : ?>
                         <a href="login.php#container-cadastro" class="btn-red shadow">Entrar</a>
                     <?php else :?>
                         <a href="../php/loggout.php" class="btn-red shadow">sair</a>
@@ -65,7 +64,7 @@
                         <img src="../public/imgs/icons/carrinho.png" alt="">
                     </button>
                 </div>
-                <?php if(isset($_SESSION['id'])) :?>
+                <?php if(isset($_SESSION['idUsuario'])) :?>
                     <div class="nome-usuario">
                         <p>Bem vindo: <?php echo $_SESSION['nomeUsuario']?></p>
                     </div>

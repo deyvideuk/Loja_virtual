@@ -1,11 +1,11 @@
 <?php
     include_once 'conexao.php';
 
-    if(!isset($_SESSION)){
+    if (!isset($_SESSION)) {
         session_start();
     }
 
-    if(isset($_POST['login'])){
+    if (isset($_POST['login'])) {
         $emailUsuario = $_POST['email'];
         $senhaUsuario = $_POST['senha'];
 
@@ -15,12 +15,13 @@
 
         $resultado = $stmt->get_result();
 
-        if($resultado->num_rows > 0){
-            $usuario = $resultado->fetch_assoc();
-            $_SESSION['id'] = $usuario['idUsuario'];
-            $_SESSION['senhaUsuario'] = $usuario['senhaUsuario'];
+        if ($resultado->num_rows > 0) {
 
-            if(password_verify($senhaUsuario, $_SESSION['senhaUsuario'])){
+            $usuario = $resultado->fetch_assoc();
+
+            if (password_verify($senhaUsuario, $usuario['senhaUsuario'])) {
+
+                $_SESSION['idUsuario'] = $usuario['idUsuario'];
                 $_SESSION['nomeUsuario'] = $usuario['nomeUsuario'];
                 $_SESSION['cpfUsuario'] = $usuario['cpfUsuario'];
                 $_SESSION['emailUsuario'] = $usuario['emailUsuario'];
@@ -33,15 +34,15 @@
                 $_SESSION['bairroUsuario'] = $usuario['bairroUsuario'];
                 $_SESSION['estadoUsuario'] = $usuario['estadoUsuario'];
                 $_SESSION['cidadeUsuario'] = $usuario['cidadeUsuario'];  
-                
+
                 header("Location: ../index.php?login=200");
-            }else{
-                session_destroy();
+
+            } else {
+                unset($_SESSION['idUsuario']);
                 header("Location: ../pages/login.php?login=401");
             }
+        } else {
+            header("Location: ../pages/login.php?login=404");
         }
-
     }
-
-
 ?>

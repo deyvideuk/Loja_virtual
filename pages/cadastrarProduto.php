@@ -51,7 +51,7 @@
             </div>
             <div class="box">
                 <div class="item">
-                    <?php if(!isset($_SESSION['id'])) : ?>
+                    <?php if(!isset($_SESSION['idUsuario'])) : ?>
                         <a href="login.php#container-cadastro" class="btn-red shadow">Entrar</a>
                     <?php else :?>
                         <a href="../php/loggout.php" class="btn-red shadow">sair</a>
@@ -63,7 +63,7 @@
                         <img src="../public/imgs/icons/carrinho.png" alt="">
                     </button>
                 </div>
-                <?php if(isset($_SESSION['id'])) :?>
+                <?php if(isset($_SESSION['idUsuario'])) :?>
                     <div class="nome-usuario">
                         <p>Bem vindo: <?php echo $_SESSION['nomeUsuario']?></p>
                     </div>
@@ -94,29 +94,29 @@
     </header>
     <!-- fim, area do header -->
 
-    <?php if(isset($_SESSION['id'])) : ?>
+    <?php if(isset($_SESSION['idUsuario'])) : ?>
         <section id="container-cadastro">
             <div class="container d-flex justify-content-center align-items-center">
                 <div class="card p-5 shadow" style="max-width: 800px; width: 100%">
-                    <form id="form-cadastro" class="row g-2">
+                    <form id="form-cadastro" class="row g-2" method="post" action="../php/cadastrarProduto.php">
                         <h2 class="text-center mb-4">Cadastrar Produto</h2>
 
                         <div class="col-md-4">
                             <label class="form-label">Nome Do Produto</label>
-                            <input type="text" id="nomeProduto" class="form-control" placeholder="Ex: Carrinho" required>
+                            <input type="text" id="nomeProduto" name="nomeProduto" class="form-control" placeholder="Ex: Carrinho" required>
                             <small class="error-message"></small>
                         </div>
 
                         <div class="col-md-4">
                             <label for="preco" class="form-label">Preço</label>
-                            <input type="number" id="precoProduto" name="preco" class="form-control"
+                            <input type="number" id="precoProduto" name="precoProduto" class="form-control"
                                 placeholder="Ex: R$ 25,00" required />
                             <small class="error-message"></small>
                         </div>
 
                         <div class="col-md-4">
                             <label for="quantidade" class="form-label">Quantidade Em Estoque</label>
-                            <input type="number" id="quantidadeProduto" name="quantidade" class="form-control"
+                            <input type="number" id="quantidadeProduto" name="qtdProduto" class="form-control"
                                 placeholder="Ex: 100" required />
                             <small class="error-message"></small>
                         </div>
@@ -124,12 +124,12 @@
                         <!-- Descrição ocupando toda a largura -->
                         <div class="col-12">
                             <label for="descricao" class="form-label" id="descricao-label">Descrição Do Produto</label>
-                            <textarea type="text" id="descricaoProduto" class="form-control" name="descricao"
+                            <textarea type="text" id="descricaoProduto" class="form-control" name="descricaoProduto"
                                 placeholder="Descrição do produto aqui..." required></textarea>
                             <small class="error-message"></small>
                         </div>
 
-                        <button class="btn btn-primary w-100" id="btn-cadastrar" type="submit">Cadastrar Produto</button>
+                        <button class="btn btn-primary w-100" id="btn-cadastrar" type="submit" name="cadastrarProduto">Cadastrar Produto</button>
                         <button class="btn btn-secondary w-100" id="btn-cancelar" type="reset">Cancelar</button>
 
                     </form>

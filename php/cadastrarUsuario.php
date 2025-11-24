@@ -1,56 +1,65 @@
 <?php
-    include_once 'conexao.php';
+include_once 'conexao.php';
 
-   if(isset($_POST["cadastrar"])){
-    
-    if(!isset($_SESSION)){
+    if (isset($_POST["cadastrar"])) {
+
         session_start();
-    }
 
-    $_SESSION['nomeUsuario'] = mysqli_real_escape_string($mysqli, $_POST['nomeUsuario']);
-    $_SESSION['cpfUsuario'] = mysqli_real_escape_string($mysqli, $_POST['cpfUsuario']);
-    $_SESSION['emailUsuario'] = mysqli_real_escape_string($mysqli, $_POST['emailUsuario']);
-    $_SESSION['telefoneUsuario'] = mysqli_real_escape_string($mysqli, $_POST['telefoneUsuario']);
-    $_SESSION['dataUsuario'] = mysqli_real_escape_string($mysqli, $_POST['dataUsuario']);
-    $_SESSION['cepUsuario'] = mysqli_real_escape_string($mysqli, $_POST['cepUsuario']);
-    $_SESSION['numeroUsuario'] = mysqli_real_escape_string($mysqli, $_POST['numeroUsuario']);
-    $_SESSION['enderecoUsuario'] = mysqli_real_escape_string($mysqli, $_POST['enderecoUsuario']);
-    $_SESSION['complementoUsuario'] = mysqli_real_escape_string($mysqli, $_POST['complementoUsuario']);
-    $_SESSION['bairroUsuario'] = mysqli_real_escape_string($mysqli, $_POST['bairroUsuario']);
-    $_SESSION['estadoUsuario'] = mysqli_real_escape_string($mysqli, $_POST['estadoUsuario']);
-    $_SESSION['cidadeUsuario'] = mysqli_real_escape_string($mysqli, $_POST['cidadeUsuario']);
-    $_SESSION['senhaUsuario'] = mysqli_real_escape_string($mysqli, $_POST['senhaUsuario']);
+        $nomeUsuario = mysqli_real_escape_string($mysqli, $_POST['nomeUsuario']);
+        $cpfUsuario = mysqli_real_escape_string($mysqli, $_POST['cpfUsuario']);
+        $emailUsuario = mysqli_real_escape_string($mysqli, $_POST['emailUsuario']);
+        $cargoUsuario = 'usuario';
+        $telefoneUsuario = mysqli_real_escape_string($mysqli, $_POST['telefoneUsuario']);
+        $dataUsuario = mysqli_real_escape_string($mysqli, $_POST['dataUsuario']);
+        $cepUsuario = mysqli_real_escape_string($mysqli, $_POST['cepUsuario']);
+        $numeroUsuario = mysqli_real_escape_string($mysqli, $_POST['numeroUsuario']);
+        $enderecoUsuario = mysqli_real_escape_string($mysqli, $_POST['enderecoUsuario']);
+        $complementoUsuario = mysqli_real_escape_string($mysqli, $_POST['complementoUsuario']);
+        $bairroUsuario = mysqli_real_escape_string($mysqli, $_POST['bairroUsuario']);
+        $estadoUsuario = mysqli_real_escape_string($mysqli, $_POST['estadoUsuario']);
+        $cidadeUsuario = mysqli_real_escape_string($mysqli, $_POST['cidadeUsuario']);
+        $senhaUsuario = mysqli_real_escape_string($mysqli, $_POST['senhaUsuario']);
 
-    $stmt = $mysqli->prepare("SELECT * FROM usuarios WHERE cpfUsuario = ?");
-    $stmt->bind_param("s", $_SESSION['cpfUsuario']);
+        $stmt = $mysqli->prepare("SELECT * FROM usuarios WHERE cpfUsuario = ? OR emailUsuario = ?");
+        $stmt->bind_param("ss", $cpfUsuario, $emailUsuario);
+        $stmt->execute();
+        $resultado = $stmt->get_result();
 
-    $stmt->execute();
-    $resultado = $stmt->get_result();
+        if ($resultado->num_rows > 0) {
+            header("Location: ../pages/cadastro.php?cadastro=409#container-cadastro");
+            exit;
+        }
 
-    if($resultado->num_rows > 0){
-        echo "Já existe";
-        $stmt->close();
-        header("Location: ../pages/cadastro.php?cadastro=409#container-cadastro");
-    }else{
-        echo "não existe";
-        $stmt->close();
 
-        $senhaProtegida = password_hash($_SESSION['senhaUsuario'], PASSWORD_DEFAULT);
-        
+        $senhaProtegida = password_hash($senhaUsuario, PASSWORD_DEFAULT);
 
-        $stmt = $mysqli->prepare("INSERT INTO usuarios (nomeUsuario, cpfUsuario, emailUsuario, telefoneUsuario, dataUsuario, cepUsuario, numeroUsuario, enderecoUsuario, complementoUsuario, bairroUsuario, estadoUsuario, cidadeUsuario, senhaUsuario) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)");
-        $stmt->bind_param("sssssssssssss", $_SESSION['nomeUsuario'], $_SESSION['cpfUsuario'], $_SESSION['emailUsuario'], $_SESSION['telefoneUsuario'], $_SESSION['dataUsuario'], $_SESSION['cepUsuario'], $_SESSION['numeroUsuario'], $_SESSION['enderecoUsuario'], $_SESSION['complementoUsuario'], $_SESSION['bairroUsuario'], $_SESSION['estadoUsuario'], $_SESSION['cidadeUsuario'], $senhaProtegida);
 
-        if($stmt->execute()){
-            $stmt->close();
-            session_destroy();
+        $stmt = $mysqli->prepare("INSERT INTO usuarios 
+        (nomeUsuario, cpfUsuario, emailUsuario, cargoUsuario, telefoneUsuario, dataUsuario, cepUsuario, numeroUsuario, enderecoUsuario, complementoUsuario, bairroUsuario, estadoUsuario, cidadeUsuario, senhaUsuario) 
+        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+
+        $stmt->bind_param("ssssssssssssss",
+            $nomeUsuario, 
+            $cpfUsuario,
+            $emailUsuario,
+            $cargoUsuario,
+            $telefoneUsuario,
+            $dataUsuario,
+            $cepUsuario,
+            $numeroUsuario,
+            $enderecoUsuario,
+            $complementoUsuario,
+            $bairroUsuario,
+            $estadoUsuario,
+            $cidadeUsuario,
+            $senhaProtegida
+        );
+
+        if ($stmt->execute()) {
             header("Location: ../pages/login.php?cadastro=200#container-cadastro");
-        }else{
-            $stmt->close();
-            session_destroy();
-            echo "Falha ao cadastrar";
+            exit;
+        } else {
+            echo "Erro ao cadastrar: " . $stmt->error;
         }
     }
-}
-
 ?>

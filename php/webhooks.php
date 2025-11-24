@@ -21,6 +21,15 @@
     // cadastro
 
     // login
+    if(isset($_GET['login']) && ($_GET['login'] == '404')){
+        $html = '
+                <div id="alert" class="alert alert-danger" style="display:flex;">
+                    <p>Email ou senha incorretas, você tem cadastro?!</p>
+                </div>
+            ';
+            echo $html;
+    }
+
     if(isset($_GET['login']) && ($_GET['login'] == '401')){
         $html = '
                 <div id="alert" class="alert alert-danger" style="display:flex;">
@@ -50,5 +59,26 @@
             echo $html;
     }
     // loggout
+
+    // cadastro Produtos
+    if(isset($_GET['cadastroProduto']) && $_GET['cadastroProduto'] == '200'){
+        $html = '
+                <div id="alert" class="alert alert-info" style="display:flex;">
+                    <p>Produto anunciado com sucesso!</p>
+                </div>
+            ';
+            echo $html;
+    }
+
+    if(isset($_GET['cadastroProduto']) && $_GET['cadastroProduto'] == '409'){
+        $html = '
+                <div id="alert" class="alert alert-danger" style="display:flex;">
+                    <p>Não foi possivel anunciar o produto!</p>
+                </div>
+            ';
+            echo $html;
+    }
+
+    // cadastro Produtos
 
 ?>
