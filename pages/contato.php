@@ -26,6 +26,7 @@
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/contato.css">
     <script src="../js/index.js" defer></script>
     <title>Sobre | ToyMania Loja Virtual</title>
 </head>
@@ -111,9 +112,34 @@
     <!-- fim, area do header -->
 
     
-    <!-- area Sobre-->
-    
-    <!-- fim, area Sobre-->
+    <!-- area Contato-->
+    <section class="container-contato">
+        <div class="col-1">
+            <h1 class="titulo">
+                Localização:
+            </h1>
+            <img src="" alt="UNINASSAU">
+            <h3 class="sub-titulo">UNINASSAU - JOÃO PESSOA</h3>
+            <p>Av. Pres. Epitácio Pessoa, 1213 - Estados, João Pessoa - PB, 58039-000</p>
+        </div>
+        <div class="col-2">
+            <h1 class="titulo">Formulário de contato:</h1>
+            <form action="submit" class="form">
+                <input type="text" name="" id="" placeholder="Digite seu nome:">
+                <input type="email" name="" id="" placeholder="Digite seu e-mail:">
+                <textarea name="" id="" rows="10" placeholder="Digite sua mensagem.."></textarea>
+                <button type="submit">ENVIAR</button>
+            </form>
+        </div>
+        <div class="col-3">
+            <h1 class="titulo">Redes Sociais:</h1>
+            <div class="redes">
+                <img src="" alt="instagram">
+                <img src="" alt="facebook">
+            </div>
+        </div>
+    </section>
+    <!-- fim, area Contato-->
 
     <span class="borda azul"></span>
 
