@@ -185,8 +185,7 @@ if (!isset($_SESSION)) {
                                 <p class="card-text"><?php echo $dados_produtos['descricaoProduto'] ?> Reais</p>
                                 <h6 class="card-text">Disponível: <?php echo $dados_produtos['qtdProduto'] ?> Unidades.</h6>
                                 <br>
-                                <button class="add-cart btn btn-primary"
-                                    data-id="<?php echo $dados_produtos['idProduto'] ?>">Adicionar ao Carrinho</button>
+                                <a href="#" class="btn btn-primary" onclick="alert('Produto adicionado ao carrinho! 🛒'); return false;">Adicionar ao Carrinho</a>
                             </div>
                         </div>
                     </div>
