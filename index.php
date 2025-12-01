@@ -6,7 +6,16 @@
 
     if(!isset($_SESSION)){
         session_start();
+        
+        if (!isset($_SESSION['cart'])) {
+            $_SESSION['cart'] = [];
+        }
+    }else{
+        if (!isset($_SESSION['cart'])) {
+            $_SESSION['cart'] = [];
+        }
     }
+
 ?>
 
 <!DOCTYPE html>
@@ -65,7 +74,7 @@
                 </div>
                 <div class="item">
                     <button type="button">
-                        <p id="valor-carrinho">0</p>
+                        <p id="valor-carrinho"><?php include_once './php/count_cart.php';?></p>
                         <img src="public/imgs/icons/carrinho.png" alt="">
                     </button>
                 </div>
@@ -174,7 +183,7 @@
                                 <p class="card-text"><?php echo $dados_produtos['descricaoProduto']?> Reais</p>
                                 <h6 class="card-text">Disponível: <?php echo $dados_produtos['qtdProduto']?> Unidades.</h6>
                                 <br>
-                                <a href="#" class="btn btn-primary">Adicionar ao Carrinho</a>
+                                <button class="add-cart btn btn-primary" data-id="<?php echo $dados_produtos['idProduto']?>">Adicionar ao Carrinho</button>
                             </div>
                         </div>
                     </div>

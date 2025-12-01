@@ -22,10 +22,11 @@
     <link rel="stylesheet" href="../css/index.css">
     <script src="../js/index.js" defer></script>
     <title>Obrigado | Loja Virtual</title>
-    <meta http-equiv="refresh" content="5; url=https://toymania.netlify.app/">
+    <meta http-equiv="refresh" content="5; url=http://localhost/projetos/loja_virtual/">
 </head>
 <body>
-    <h1>Cadastro realizado com sucesso!</span>
+    <br><br><br>
+    <h1>Atividade realizada com sucesso!</span>
     <h2>Obrigado🧸 </span>
 </body>
 </html>

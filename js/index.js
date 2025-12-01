@@ -4,6 +4,7 @@ var count = 0;
 
 if (produtos) {
 
+    const buttons = document.querySelectorAll('.add-cart');
     var larguraBoxCard = document.querySelector('.box-card').clientWidth;
     var larguraVitrine = document.querySelector('.tela-produtos').clientWidth;
     var quantidadeClicks = 0;
@@ -50,6 +51,35 @@ if (produtos) {
 
         prev();
     }
+
+    
+
+    buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            let id = btn.getAttribute('data-id');
+
+            fetch('php/carrinho.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: 'id=' + id
+            })
+            .then(res => res.json())
+            .then(data => {
+                atualizarCarrinho();
+            });
+        });
+    });
+
+    function atualizarCarrinho() {
+        fetch('php/count_cart.php')
+            .then(res => res.text())
+            .then(qtd => {
+                document.getElementById('valor-carrinho').innerText = qtd;
+            });
+    }
+
 }
 
 function next() {
