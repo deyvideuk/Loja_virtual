@@ -3,8 +3,8 @@
     $hostname = "localhost";
     $banco = "toymania";
     $usuario = "root";
-    $senha = "12345678";
-    // $senha = "Dwdbrasiloficial12!";
+    // $senha = "12345678";
+    $senha = "Dwdbrasiloficial12!";
     // $senha = "@washesk1ll";
 
     $mysqli = new mysqli($hostname, $usuario, $senha, $banco);
