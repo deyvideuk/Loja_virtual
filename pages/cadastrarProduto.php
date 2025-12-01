@@ -78,8 +78,8 @@
                 </div>
                 <div class="item">
                     <button type="button">
-                        <p id="valor-carrinho"><?php include_once './php/count_cart.php';?></p>
-                        <img src="public/imgs/icons/carrinho.png" alt="">
+                        <p id="valor-carrinho"><?php include_once '../php/count_cart.php';?></p>
+                        <img src="../public/imgs/icons/carrinho.png" alt="">
                     </button>
                 </div>
                 <?php if(isset($_SESSION['idUsuario'])) :?>

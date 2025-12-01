@@ -22,11 +22,7 @@ body{
     font-style: normal;
     font-size: clamp(1rem, 1vw, 2rem);
 }
-p{
-    font-family: Quicksand;
-    font-weight: bold;
-    font-style: normal;
-}
+
 
 .logo-nassau {
     /* border: 1px solid red; */
@@ -91,7 +87,7 @@ textarea::placeholder{
     font-family: Quicksand;
     resize: vertical;
 }
-button {
+.button {
     width: 200px;
     padding: 12px 0;
     background: #fff38b00;
@@ -109,7 +105,7 @@ button {
     transition: 0.3s ease;
 }
 
-button:hover {
+.button:hover {
     background: #ffe75c;
     transform: scale(1.05);
 }

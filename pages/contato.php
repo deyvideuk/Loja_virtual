@@ -79,8 +79,8 @@
                 </div>
                 <div class="item">
                     <button type="button">
-                        <p id="valor-carrinho"><?php include_once './php/count_cart.php';?></p>
-                        <img src="public/imgs/icons/carrinho.png" alt="">
+                        <p id="valor-carrinho"><?php include_once '../php/count_cart.php';?></p>
+                        <img src="../public/imgs/icons/carrinho.png" alt="">
                     </button>
                 </div>
                 <?php if(isset($_SESSION['idUsuario'])) :?>
@@ -150,7 +150,7 @@
                 <input type="email" name="email" id="" placeholder="Digite seu e-mail:" required>
                 <input type="hidden" name="_next" value="http://localhost/projetos/loja_virtual/pages/obrigado.php">
                 <textarea name="mensagem" id="" rows="10" placeholder="Digite sua mensagem.."></textarea>
-                <button type="submit">ENVIAR</button>
+                <button type="submit" class="button">ENVIAR</button>
             </form>
         </div>
         <aside class="box-contato">
