@@ -1,20 +1,20 @@
 <?php
-    include_once './php/conexao.php';
-    include_once './php/webhooks.php';
-    include_once './php/pegarProdutos.php';
-    include_once './php/verificarLogin.php';
+include_once './php/conexao.php';
+include_once './php/webhooks.php';
+include_once './php/pegarProdutos.php';
+include_once './php/verificarLogin.php';
 
-    if(!isset($_SESSION)){
-        session_start();
-        
-        if (!isset($_SESSION['cart'])) {
-            $_SESSION['cart'] = [];
-        }
-    }else{
-        if (!isset($_SESSION['cart'])) {
-            $_SESSION['cart'] = [];
-        }
+if (!isset($_SESSION)) {
+    session_start();
+
+    if (!isset($_SESSION['cart'])) {
+        $_SESSION['cart'] = [];
     }
+} else {
+    if (!isset($_SESSION['cart'])) {
+        $_SESSION['cart'] = [];
+    }
+}
 
 ?>
 
@@ -66,23 +66,23 @@
             </div>
             <div class="box">
                 <div class="item">
-                    <?php if(!isset($_SESSION['idUsuario'])) : ?>
+                    <?php if (!isset($_SESSION['idUsuario'])): ?>
                         <a href="./pages/login.php#container-cadastro" class="btn-red shadow">Entrar</a>
-                    <?php else :?>
+                    <?php else: ?>
                         <a href="./php/loggout.php" class="btn-red shadow">sair</a>
-                    <?php endif;?>
+                    <?php endif; ?>
                 </div>
                 <div class="item">
                     <button type="button">
-                        <p id="valor-carrinho"><?php include_once './php/count_cart.php';?></p>
+                        <p id="valor-carrinho"><?php include_once './php/count_cart.php'; ?></p>
                         <img src="public/imgs/icons/carrinho.png" alt="">
                     </button>
                 </div>
-                <?php if(isset($_SESSION['idUsuario'])) :?>
+                <?php if (isset($_SESSION['idUsuario'])): ?>
                     <div class="nome-usuario">
-                        <p>Bem vindo: <?php echo $_SESSION['nomeUsuario']?></p>
+                        <p>Bem vindo: <?php echo $_SESSION['nomeUsuario'] ?></p>
                     </div>
-                <?php endif;?>
+                <?php endif; ?>
             </div>
         </div>
         <nav id="menu">
@@ -95,15 +95,15 @@
                         <a onclick="menu()" href="./index.php">Inicio</a>
                     </li>
 
-                    <?php if(isset($_SESSION['cargoUsuario']) && ($_SESSION['cargoUsuario']) == 'admin'): ?>     
+                    <?php if (isset($_SESSION['cargoUsuario']) && ($_SESSION['cargoUsuario']) == 'admin'): ?>
                         <li>
                             <a onclick="menu()" href="./pages/cadastrarProduto.php">Cadastrar Produtos</a>
                         </li>
-                    <?php else : ?>
+                    <?php else: ?>
                         <li>
                             <a onclick="menu()" href="./pages/cadastrarProduto.php">Lista de Produtos</a>
                         </li>
-                    <?php endif;?>
+                    <?php endif; ?>
 
                     <li>
                         <a onclick="menu()" href="./pages/sobre.php">Sobre</a>
@@ -167,29 +167,32 @@
     <!-- area de produtos-->
     <section id="area-produtos">
         <h2>Novos Produtos</h2>
-        <?php if($resultadoProdutos->num_rows > 0) :?>
+        <?php if ($resultadoProdutos->num_rows > 0): ?>
             <div class="tela-produtos">
-                
+
                 <button type="button" class="btn-next" onclick="next()">&gt;</button>
                 <button type="button" class="btn-prev" onclick="prev()">&lt;</button>
 
-                <?php while($dados_produtos = mysqli_fetch_assoc($resultadoProdutos)) :?>
+                <?php while ($dados_produtos = mysqli_fetch_assoc($resultadoProdutos)): ?>
                     <div id="produtos" class="produtos">
                         <div class="box-card card d-flex justify-content-center">
-                            <img src="public/imgs/produtos/novos/imgNone.jpeg" alt="" class="card-img-top">
+                            <img src="https://picsum.photos/seed/<?php echo $dados_produtos['idProduto']; ?>/300/200"
+                                class="card-img-top" alt="Imagem do Produto"> <!-- api que gera imagens aleatorias -->
                             <div class="card-body">
-                                <h4 class="card-title"><?php echo $dados_produtos['nomeProduto']?></h4>
-                                <h6 class="card-text">R$: <?php echo $dados_produtos['precoProduto']?> Reais</h6>
-                                <p class="card-text"><?php echo $dados_produtos['descricaoProduto']?> Reais</p>
-                                <h6 class="card-text">Disponível: <?php echo $dados_produtos['qtdProduto']?> Unidades.</h6>
+                                <h4 class="card-title"><?php echo $dados_produtos['nomeProduto'] ?></h4>
+                                <h6 class="card-text">R$
+                                    <?php echo number_format(($dados_produtos['precoProduto']), 2, ',', '.') ?> Reais</h6>
+                                <p class="card-text"><?php echo $dados_produtos['descricaoProduto'] ?> Reais</p>
+                                <h6 class="card-text">Disponível: <?php echo $dados_produtos['qtdProduto'] ?> Unidades.</h6>
                                 <br>
-                                <button class="add-cart btn btn-primary" data-id="<?php echo $dados_produtos['idProduto']?>">Adicionar ao Carrinho</button>
+                                <button class="add-cart btn btn-primary"
+                                    data-id="<?php echo $dados_produtos['idProduto'] ?>">Adicionar ao Carrinho</button>
                             </div>
                         </div>
                     </div>
-                <?php endwhile;?>
+                <?php endwhile; ?>
             </div>
-        <?php else :?>
+        <?php else: ?>
             <div class="tela-produtos">
 
                 <div class="sem-produtos">
@@ -197,7 +200,7 @@
                 </div>
 
             </div>
-        <?php endif;?>
+        <?php endif; ?>
     </section>
     <!-- fim, area de produtos-->
 
@@ -210,6 +213,7 @@
             <p><a href="#">Política de Privacidade</a> · <a href="#">Contato</a></p>
         </div>
     </footer>
+
     <!-- fim, area do footer -->
 </body>
 

@@ -187,3 +187,21 @@ document.addEventListener("DOMContentLoaded", function(){
         }, 5000);
     }
 });
+
+const searchInput = document.getElementById('searchInput');
+
+searchInput.addEventListener('keyup', function(){
+    const termo = searchInput.ariaValueMax.toLowerCase();
+    const produtos = document.querySelectorAll('.produtos');
+
+    produtos.forEach(produto => {
+        const titulo = produto.querySelector('.card-title').textContent.toLowerCase();
+
+        if(!titulo.includes(termo)){
+            produto.style.display = 'none';
+        }
+        else{
+            produto.style.display = 'block';
+        }
+    });
+});
