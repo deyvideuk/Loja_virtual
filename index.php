@@ -189,7 +189,7 @@ if (!isset($_SESSION)) {
                                 <h6 class="card-text">Disponível: <?php echo $dados_produtos['qtdProduto'] ?> Unidades.</h6>
                                 <br>
                                 <div class="area-btn">
-                                    <button class="add-cart btn btn-primary " data-id="<?php echo $dados_produtos['idProduto']?>">Adicionar ao Carrinho</button>
+                                    <button class="add-cart btn btn-primary " onclick="alert('Adicionado ao carrinho!')" data-id="<?php echo $dados_produtos['idProduto']?>">Adicionar ao Carrinho</button>
                                     
                                     <?php if(isset($_SESSION['cargoUsuario']) && $_SESSION['cargoUsuario'] == 'admin') :?>
                                         <form action="./php/removerProduto.php?produto=<?php echo $dados_produtos['idProduto']?>" method="post" onsubmit="return confirmarExclusao()">
