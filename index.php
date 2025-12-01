@@ -55,7 +55,7 @@ if (!isset($_SESSION)) {
             <div class="box">
                 <form action="#">
                     <label for="pequisa">
-                        <img src="public/imgs/icons/lupa.png" alt="">
+                        <img src="./public/imgs/icons/lupa.png" alt="">
                     </label>
                     <input type="search" id="pequisa" class="shadow" placeholder="Buscar produtos">
                 </form>

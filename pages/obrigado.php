@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,11 +23,13 @@
     <link rel="stylesheet" href="../css/index.css">
     <script src="../js/index.js" defer></script>
     <title>Obrigado | Loja Virtual</title>
-    <meta http-equiv="refresh" content="5; url=http://localhost/projetos/loja_virtual/">
+    <meta http-equiv="refresh" content="5; url=http://localhost/loja_virtual/">
 </head>
+
 <body>
     <br><br><br>
     <h1>Atividade realizada com sucesso!</span>
-    <h2>Obrigado🧸 </span>
+        <h2>Obrigado🧸 </span>
 </body>
+
 </html>

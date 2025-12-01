@@ -1,25 +1,29 @@
 <?php
-    include_once '../php/conexao.php';
-    include_once '../php/webhooks.php';
-    include_once '../php/pegarProdutos.php';
-    include_once '../php/verificarLogin.php';
-    include_once '../php/removerProduto.php';
+include_once '../php/conexao.php';
+include_once '../php/webhooks.php';
+include_once '../php/pegarProdutos.php';
+include_once '../php/verificarLogin.php';
+include_once '../php/removerProduto.php';
 
-    if(!isset($_SESSION)){
-        session_start();
-        
-        if (!isset($_SESSION['cart'])) {
-            $_SESSION['cart'] = [];
-        }
-    }else{
-        if (!isset($_SESSION['cart'])) {
-            $_SESSION['cart'] = [];
-        }
-    }
+if (!isset($_SESSION)) {
+    session_start();
 
-    if(!isset($_SESSION['idUsuario'])){
-        header("Location: ./login.php?login=405");
+    if (!isset($_SESSION['cart'])) {
+        $_SESSION['cart'] = [];
     }
+} else {
+    if (!isset($_SESSION['cart'])) {
+        $_SESSION['cart'] = [];
+    }
+}
+
+if (!isset($_SESSION['idUsuario'])) {
+    header("Location: ./login.php?login=405");
+}
+
+if (isset($_POST["finalizar"])) {
+    header("Location: ../pages/obrigado.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -48,7 +52,7 @@
     <title>Sobre | ToyMania Loja Virtual</title>
 </head>
 
-<body>    <!-- area do header -->
+<body> <!-- area do header -->
     <header id="header">
         <div id="news">
             <p>🎉 Promoção Relâmpago na ToyMania! garante até 50% OFF 🧸</p>
@@ -69,16 +73,16 @@
             </div>
             <div class="box">
                 <div class="item">
-                    <?php if(isset($_SESSION['idUsuario'])) : ?>
-                    <a href="../php/loggout.php" class="btn-red shadow">sair</a>
-                    <div class="nome-usuario">
-                        <p>Bem vindo: <?php echo $_SESSION['nomeUsuario']?></p>
-                    </div>
+                    <?php if (isset($_SESSION['idUsuario'])): ?>
+                        <a href="../php/loggout.php" class="btn-red shadow">sair</a>
+                        <div class="nome-usuario">
+                            <p>Bem vindo: <?php echo $_SESSION['nomeUsuario'] ?></p>
+                        </div>
 
-                    <?php else :?>
+                    <?php else: ?>
                         <a href="login.php#container-cadastro" class="btn-red shadow">Entrar</a>
-                    <?php endif;?>
-                
+                    <?php endif; ?>
+
                 </div>
                 <div class="item">
                     <button type="button">
@@ -88,32 +92,32 @@
                         </a>
                     </button>
                 </div>
-                <?php if(isset($_SESSION['idUsuario'])) :?>
+                <?php if (isset($_SESSION['idUsuario'])): ?>
                     <div class="nome-usuario">
-                        <p>Bem vindo: <?php echo $_SESSION['nomeUsuario']?></p>
+                        <p>Bem vindo: <?php echo $_SESSION['nomeUsuario'] ?></p>
                     </div>
-                <?php endif;?>
+                <?php endif; ?>
             </div>
         </div>
         <nav id="menu">
             <button type="button" class="btnClose" onclick="menu()">
                 <img id="btnMenu" src="/public/imgs/icons/arrow-right.png" alt="">
             </button>
-             <div class="areaLista">
+            <div class="areaLista">
                 <ul id="listaMenu">
                     <li>
                         <a onclick="menu()" href="../index.php">Inicio</a>
                     </li>
 
-                    <?php if(isset($_SESSION['cargoUsuario']) && ($_SESSION['cargoUsuario']) == 'admin'): ?>     
+                    <?php if (isset($_SESSION['cargoUsuario']) && ($_SESSION['cargoUsuario']) == 'admin'): ?>
                         <li>
                             <a onclick="menu()" href="cadastrarProduto.php">Cadastrar Produtos</a>
                         </li>
-                    <?php else : ?>
+                    <?php else: ?>
                         <li>
                             <a onclick="menu()" href="cadastrarProduto.php">Lista de Produtos</a>
                         </li>
-                    <?php endif;?>
+                    <?php endif; ?>
 
                     <li>
                         <a onclick="menu()" href="sobre.php">Sobre</a>
@@ -127,24 +131,27 @@
     </header>
     <!-- fim, area do header -->
 
-    
+
     <!-- Area checkout -->
-     <div class="bg">
+    <div class="bg">
         <div class="card">
 
             <h3 class="titulo">Endereço para envio:</h3>
 
             <div class="endereco">
-                <p><strong>Destinatário: <?php echo $_SESSION['nomeUsuario']?></strong></p>
-                <p><?php echo $_SESSION['enderecoUsuario']?></p>
-                <p><?php echo $_SESSION['cidadeUsuario']?>, <?php echo $_SESSION['estadoUsuario']?>, <?php echo $_SESSION['cepUsuario']?></p>
-                <p><?php echo $_SESSION['bairroUsuario']?>, Complemento: <?php echo $_SESSION['complementoUsuario']?></p>
+                <p><strong>Destinatário: <?php echo $_SESSION['nomeUsuario'] ?></strong></p>
+                <p><?php echo $_SESSION['enderecoUsuario'] ?></p>
+                <p><?php echo $_SESSION['cidadeUsuario'] ?>, <?php echo $_SESSION['estadoUsuario'] ?>,
+                    <?php echo $_SESSION['cepUsuario'] ?>
+                </p>
+                <p><?php echo $_SESSION['bairroUsuario'] ?>, Complemento: <?php echo $_SESSION['complementoUsuario'] ?>
+                </p>
                 <a href="" class="alterar">mudar endereço</a>
             </div>
 
             <div class="item">
                 <img src="uno.jpg" alt="Produto">
-                
+
                 <div class="item-info">
                     <p class="produto-nome">Nome do produto*</p>
                     <p class="produto-preco">12,80</p>
@@ -185,7 +192,9 @@
                 </label>
             </div>
 
-            <button class="finalizar">finalizar</button>
+            <form action="checkout.php" method="post">
+                <button class="finalizar" type="submit" name="finalizar">finalizar</button>
+            </form>
         </div>
     </div>
     <!-- Area checkout -->

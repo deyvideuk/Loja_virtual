@@ -526,14 +526,14 @@ basicamente ele tira todos aqueles efeitos de link do a.
     /* border: 1px solid red; */
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
 }
 
 .area-btn button{
     display: flex;
-    width: 100%;
-    max-width: min-content;
+    width: 90%;
+    max-width: max-content;
     font-size: 14px;
 }
 
