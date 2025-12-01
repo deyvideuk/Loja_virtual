@@ -79,6 +79,24 @@
             echo $html;
     }
 
+    if(isset($_GET['Produto']) && $_GET['Produto'] == '202'){
+        $html = '
+                <div id="alert" class="alert alert-success" style="display:flex;">
+                    <p>Produto excluido!</p>
+                </div>
+            ';
+            echo $html;
+    }
+
+    if(isset($_GET['Produto']) && $_GET['Produto'] == '444'){
+        $html = '
+                <div id="alert" class="alert alert-danger" style="display:flex;">
+                    <p>Não foi possivel excluir o produto!</p>
+                </div>
+            ';
+            echo $html;
+    }
+
     // cadastro Produtos
 
 ?>

@@ -21,7 +21,7 @@
         if($stmt->execute()){
             header("Location: ../index.php?cadastroProduto=200#area-produtos");
         }else{
-            header("Location: ../pages/cadastrarProduto.php?cadastroProduto=409");
+            header("Location: ../pages/cadastrarProduto.php?cadastroProduto=409#area-produtos");
         }
 
 

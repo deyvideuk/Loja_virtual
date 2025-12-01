@@ -3,6 +3,7 @@
     include_once './php/webhooks.php';
     include_once './php/pegarProdutos.php';
     include_once './php/verificarLogin.php';
+    include_once './php/removerProduto.php';
 
     if(!isset($_SESSION)){
         session_start();
@@ -183,7 +184,24 @@
                                 <p class="card-text"><?php echo $dados_produtos['descricaoProduto']?> Reais</p>
                                 <h6 class="card-text">Disponível: <?php echo $dados_produtos['qtdProduto']?> Unidades.</h6>
                                 <br>
-                                <button class="add-cart btn btn-primary" data-id="<?php echo $dados_produtos['idProduto']?>">Adicionar ao Carrinho</button>
+                                <div class="area-btn">
+                                    <button class="add-cart btn btn-primary " data-id="<?php echo $dados_produtos['idProduto']?>">Adicionar ao Carrinho</button>
+                                    
+                                    <?php if(isset($_SESSION['cargoUsuario']) && $_SESSION['cargoUsuario'] == 'admin') :?>
+                                        <form action="./php/removerProduto.php?produto=<?php echo $dados_produtos['idProduto']?>" method="post" onsubmit="return confirmarExclusao()">
+                                            <button type="submit" name="excluirProduto" class="btn btn-danger">Excluir</button>
+                                        </form>
+                                        <script>
+                                            function confirmarExclusao() {
+                                                var nomeAnuncio = <?= json_encode($dados_produtos['nomeProduto'], JSON_UNESCAPED_UNICODE); ?>;
+                                                return confirm("Tem certeza que deseja excluir o anúncio: " + nomeAnuncio + "?");
+                                            }
+
+                                        </script>
+                                    <?php endif;?>
+                                    
+
+                                </div>
                             </div>
                         </div>
                     </div>
