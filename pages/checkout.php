@@ -16,6 +16,10 @@
             $_SESSION['cart'] = [];
         }
     }
+
+    if(!isset($_SESSION['idUsuario'])){
+        header("Location: ./login.php?login=405");
+    }
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">

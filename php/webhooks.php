@@ -47,6 +47,15 @@
             ';
             echo $html;
     }
+
+    if(isset($_GET['login']) && ($_GET['login'] == '405')){
+        $html = '
+                <div id="alert" class="alert alert-warning" style="display:flex;">
+                    <p>Efetue Login para continuar!</p>
+                </div>
+            ';
+            echo $html;
+    }
     // login
 
     // loggout
