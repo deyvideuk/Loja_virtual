@@ -1,12 +1,12 @@
 # 🧸 ToyMania | Loja Virtual
 
-> Projeto final da disciplina de Desenvolvimento para Internet.
+> Projeto final da disciplina de Desenvolvimento de Aplicações para Internet.
 
 ---
 
 ## 👨‍🏫 Sobre o Projeto
 **Instituição:** Centro Universitário Maurício de Nassau  
-**Disciplina:** Desenvolvimento para Internet  
+**Disciplina:** Desenvolvimento de Aplicações para Internet  
 **Professor:** Tiago Emilio  
 
 O **ToyMania** é uma aplicação de e-commerce web desenvolvida para simular a experiência real de compra de brinquedos. O sistema conta com autenticação de usuários, catálogo dinâmico de produtos e área administrativa para gestão de estoque.
@@ -15,7 +15,7 @@ O **ToyMania** é uma aplicação de e-commerce web desenvolvida para simular a 
 
 ## 👥 Equipe de Desenvolvimento
 * **Deyvid André** (Fullstack & Líder Técnico)
-* **Antonny** (UI/UX Design & Frontend)
+* **Antonio** (UI/UX Design & Frontend)
 * **Lucas** (Autenticação & Validações)
 * **Janderson** (Cadastro & Relatórios)
 
