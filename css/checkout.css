@@ -1,0 +1,124 @@
+
+.bg {
+    width: 100%;
+    background: #6BF178;
+    background-image: url("icon-pattern.png");
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 10px;
+}
+
+.card {
+    width: 420px;
+    background: #FFFFFF;
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 0 10px #0002;
+}
+
+.titulo {
+    color: #35A7FF;
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.endereco p {
+    margin: 2px 0;
+}
+
+.alterar {
+    font-size: 13px;
+    color: #35A7FF;
+    text-decoration: none;
+}
+
+.item {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.item img {
+    width: 70px;
+    border-radius: 10px;
+}
+
+.item-info {
+    flex: 1;
+}
+
+.produto-nome {
+    font-weight: bold;
+    margin: 0;
+}
+
+.produto-preco {
+    margin: 0;
+    color: #FF5964;
+    font-weight: bold;
+}
+
+.quantidade {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.quantidade span {
+    cursor: pointer;
+    font-size: 20px;
+    padding: 3px 10px;
+    border-radius: 5px;
+    border: 1px solid #35A7FF;
+}
+
+.quantidade input {
+    width: 40px;
+    text-align: center;
+    border: 1px solid #35A7FF;
+    border-radius: 5px;
+}
+
+.linha {
+    width: 100%;
+    height: 1px;
+    background: #ddd;
+    margin: 20px 0;
+}
+
+.envio-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.envio-total select {
+    padding: 4px 8px;
+    border-radius: 8px;
+    border: 1px solid #35A7FF;
+}
+
+.total {
+    font-weight: bold;
+}
+
+.pagamento {
+    margin: 20px 0;
+}
+
+.radio {
+    display: block;
+    margin-top: 6px;
+}
+
+.finalizar {
+    width: 100%;
+    padding: 12px;
+    border-radius: 30px;
+    border: 2px solid #35A7FF;
+    background: none;
+    font-size: 16px;
+    cursor: pointer;
+}

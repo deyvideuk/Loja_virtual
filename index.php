@@ -76,7 +76,9 @@ if (!isset($_SESSION)) {
                 <div class="item">
                     <button type="button">
                         <p id="valor-carrinho"><?php include_once './php/count_cart.php'; ?></p>
-                        <img src="public/imgs/icons/carrinho.png" alt="">
+                        <a href="./pages/checkout.php">
+                            <img src="public/imgs/icons/carrinho.png" alt="cart">
+                        </a>
                     </button>
                 </div>
                 <?php if (isset($_SESSION['idUsuario'])): ?>
@@ -174,8 +176,8 @@ if (!isset($_SESSION)) {
                 <button type="button" class="btn-next" onclick="next()">&gt;</button>
                 <button type="button" class="btn-prev" onclick="prev()">&lt;</button>
 
-                <?php while ($dados_produtos = mysqli_fetch_assoc($resultadoProdutos)): ?>
-                    <div id="produtos" class="produtos">
+                <div id="produtos" class="produtos">
+                    <?php while ($dados_produtos = mysqli_fetch_assoc($resultadoProdutos)): ?>
                         <div class="box-card card d-flex justify-content-center">
                             <img src="https://picsum.photos/seed/<?php echo $dados_produtos['idProduto']; ?>/300/200"
                                 class="card-img-top" alt="Imagem do Produto"> <!-- api que gera imagens aleatorias -->
@@ -206,8 +208,8 @@ if (!isset($_SESSION)) {
                                 </div>
                             </div>
                         </div>
-                    </div>
-                <?php endwhile; ?>
+                    <?php endwhile; ?>
+                </div>
             </div>
         <?php else: ?>
             <div class="tela-produtos">
