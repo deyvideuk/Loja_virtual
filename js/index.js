@@ -4,6 +4,7 @@ var count = 0;
 
 if (produtos) {
 
+    const buttons = document.querySelectorAll('.add-cart');
     var larguraBoxCard = document.querySelector('.box-card').clientWidth;
     var larguraVitrine = document.querySelector('.tela-produtos').clientWidth;
     var quantidadeClicks = 0;
@@ -50,6 +51,35 @@ if (produtos) {
 
         prev();
     }
+
+    
+
+    buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            let id = btn.getAttribute('data-id');
+
+            fetch('php/carrinho.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: 'id=' + id
+            })
+            .then(res => res.json())
+            .then(data => {
+                atualizarCarrinho();
+            });
+        });
+    });
+
+    function atualizarCarrinho() {
+        fetch('php/count_cart.php')
+            .then(res => res.text())
+            .then(qtd => {
+                document.getElementById('valor-carrinho').innerText = qtd;
+            });
+    }
+
 }
 
 function next() {
@@ -156,4 +186,22 @@ document.addEventListener("DOMContentLoaded", function(){
             alert.style.display = 'none';
         }, 5000);
     }
+});
+
+const searchInput = document.getElementById('searchInput');
+
+searchInput.addEventListener('keyup', function(){
+    const termo = searchInput.ariaValueMax.toLowerCase();
+    const produtos = document.querySelectorAll('.produtos');
+
+    produtos.forEach(produto => {
+        const titulo = produto.querySelector('.card-title').textContent.toLowerCase();
+
+        if(!titulo.includes(termo)){
+            produto.style.display = 'none';
+        }
+        else{
+            produto.style.display = 'block';
+        }
+    });
 });

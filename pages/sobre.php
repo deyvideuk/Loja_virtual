@@ -1,8 +1,21 @@
 <?php
     include_once '../php/conexao.php';
     include_once '../php/webhooks.php';
+    include_once '../php/pegarProdutos.php';
     include_once '../php/verificarLogin.php';
+    include_once '../php/removerProduto.php';
 
+    if(!isset($_SESSION)){
+        session_start();
+        
+        if (!isset($_SESSION['cart'])) {
+            $_SESSION['cart'] = [];
+        }
+    }else{
+        if (!isset($_SESSION['cart'])) {
+            $_SESSION['cart'] = [];
+        }
+    }
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -65,8 +78,10 @@
                 </div>
                 <div class="item">
                     <button type="button">
-                        <p id="valor-carrinho">0</p>
-                        <img src="../public/imgs/icons/carrinho.png" alt="">
+                        <p id="valor-carrinho"><?php include_once '../php/count_cart.php'; ?></p>
+                        <a href="../pages/checkout.php">
+                            <img src="../public/imgs/icons/carrinho.png" alt="cart">
+                        </a>
                     </button>
                 </div>
                 <?php if(isset($_SESSION['idUsuario'])) :?>

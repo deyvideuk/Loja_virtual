@@ -47,6 +47,15 @@
             ';
             echo $html;
     }
+
+    if(isset($_GET['login']) && ($_GET['login'] == '405')){
+        $html = '
+                <div id="alert" class="alert alert-warning" style="display:flex;">
+                    <p>Efetue Login para continuar!</p>
+                </div>
+            ';
+            echo $html;
+    }
     // login
 
     // loggout
@@ -74,6 +83,24 @@
         $html = '
                 <div id="alert" class="alert alert-danger" style="display:flex;">
                     <p>Não foi possivel anunciar o produto!</p>
+                </div>
+            ';
+            echo $html;
+    }
+
+    if(isset($_GET['Produto']) && $_GET['Produto'] == '202'){
+        $html = '
+                <div id="alert" class="alert alert-success" style="display:flex;">
+                    <p>Produto excluido!</p>
+                </div>
+            ';
+            echo $html;
+    }
+
+    if(isset($_GET['Produto']) && $_GET['Produto'] == '444'){
+        $html = '
+                <div id="alert" class="alert alert-danger" style="display:flex;">
+                    <p>Não foi possivel excluir o produto!</p>
                 </div>
             ';
             echo $html;

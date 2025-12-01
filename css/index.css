@@ -68,7 +68,7 @@ h1 {
 
 h2 {
     font-family: "Poppins", sans-serif !important;
-    font-weight: 400;
+    font-weight: 500;
     font-style: normal;
 }
 
@@ -520,6 +520,22 @@ basicamente ele tira todos aqueles efeitos de link do a.
 
 .card-body a {
     margin: 0 auto !important;
+}
+
+.area-btn{
+    /* border: 1px solid red; */
+    display: flex;
+    flex-direction: row;
+    /* flex-wrap: wrap; */
+    justify-content: space-between;
+    align-items: center;
+}
+
+.area-btn button{
+    display: flex;
+    width: 100%;
+    max-width: max-content;
+    font-size: 14px;
 }
 
 

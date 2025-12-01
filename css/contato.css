@@ -1,49 +1,63 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
 
-body {
-    overflow-x: hidden;
-    min-height: 100vh;
-    width: 100vw;
-}
-.container-contato{
-    width: 100%;
+body{
     background-color: #FFE74C;
-    display: flex;
-    justify-content: space-between;
 }
-.titulo{
+
+.container-contato{
+    /* border: 1px solid red; */
+    width: 100%;
+    max-width: 1500px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.titulo h1{
     font-family: Riffic;
 }
 .sub-titulo{
     font-family: Quicksand;
     font-weight: bold;
     font-style: normal;
+    font-size: clamp(1rem, 1vw, 2rem);
 }
-p{
-    font-family: Quicksand;
-    font-weight: bold;
-    font-style: normal;
+
+
+.logo-nassau {
+    /* border: 1px solid red; */
+    display: flex;
+    width: 100% !important;
+    max-width: 10px;
+    justify-content: center;
+    align-items: center;
+    overflow-y: hidden;
 }
-.col-1, .col-2, .col-3{
+
+.logo-nassau img {
+    display: flex;
+    width: 100%;
+    object-fit: cover;
+}
+
+.box-contato{
+    /* border: 1px solid red; */
     padding: 50px 20px;
-    flex-grow: 1;
-    flex-basis: 0;
-    min-width: 0;
     display: flex;
     flex-direction: column;
     align-items: center; 
     text-align: center;
 }
-.col-2{
-    flex-grow: 2;
-    padding: 50px;
-}
+
 .form{
+    /* border: 1px solid red; */
     padding: 50px;
     background-color: rgba(255, 255, 255, 0.5);
     display: flex;
     flex-direction: column;
     gap:25px;
+    width: 100%;
+    max-width: 600px;
     border-radius: 25px;
     box-shadow: 9px 9px 50px rgba(0, 0, 0, 0.1);
 }
@@ -73,32 +87,61 @@ textarea::placeholder{
     font-family: Quicksand;
     resize: vertical;
 }
-button{
-    border-style: none;
-    background: none;
-    box-shadow: 0 0 0 2px white inset;
-    color: white;
-    padding: 10px;
-    font-family: Quicksand;
-    font-weight: bold;
-    border-radius: 25px;
-    width: 250px;
-    align-self: center;
-    transition: background-color 0.3s ease, color 0.3s ease;
+.button {
+    width: 200px;
+    padding: 12px 0;
+    background: #fff38b00;
+    border: 2px solid #000000;
+    border-radius: 30px;
+
+    color: #000000;
+    font-weight: 600;
+    font-size: 16px;
+
+    cursor: pointer;
+    margin: 20px auto 0 auto;
+    display: block;
+
+    transition: 0.3s ease;
 }
-button:hover{
-    background-color: white;
-    border: none;
-    color: #FFE74C;
+
+.button:hover {
+    background: #ffe75c;
+    transform: scale(1.05);
 }
+
+
+
 .redes{
     display: flex;
-    column-gap: 50px;
+    gap: 30px;
+    flex-direction: column;
+}
+.redes-row{
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    justify-content: center;
+}
+.btn-redes{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.301));
 }
 .col-3{
     align-items: center;
     text-align: center;
 }
+
+.area-instagram{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
 @media (max-width: 768px) {
     .container-contato {
         flex-direction: column;
