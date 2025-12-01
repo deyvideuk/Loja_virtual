@@ -15,7 +15,7 @@ O **ToyMania** é uma aplicação de e-commerce web desenvolvida para simular a 
 
 ## 👥 Equipe de Desenvolvimento 
 * **Deyvid André** (Fullstack & Líder Técnico)
-* **Antonny** (UI/UX Design & Frontend)
+* **Antonio** (UI/UX Design & Frontend)
 * **Lucas** (Autenticação & Validações)
 * **Janderson** (Cadastro & Relatórios)
 
